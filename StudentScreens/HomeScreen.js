@@ -4,7 +4,7 @@ import { View, Text, Button, StyleSheet, ImageBackground } from 'react-native';
 export default function HomeScreen({ navigation }) {
   return (
     <ImageBackground
-   source={require('C:/Users/user/Desktop/Development/React native/Fourth/MyApp/assets/bobo.png')}
+   source={require('../assets/bobo.png')}
       style={styles.background}>
 
       <View style={styles.container}>
@@ -12,7 +12,7 @@ export default function HomeScreen({ navigation }) {
         </View>
         <View style={styles1.buttonContainer}>
           <Button title="Student" onPress={() => navigation.navigate('QuickSetup')} />
-          <Button title="Scholar" onPress={() => navigation.navigate('')} />
+          <Button title="Scholar" onPress={() => navigation.navigate('QuickSetup1')} />
         </View>
     
     </ImageBackground>
@@ -32,3 +32,4 @@ const styles1 = StyleSheet.create({
     marginLeft:40, border:5,
    },
 });
+

@@ -1,25 +1,22 @@
 import React from 'react';
 import { Text,View, Button, StyleSheet, ImageBackground } from 'react-native';
 
-export default function QuickSetup({ navigation }) {
+export default function QuickSetup1({ navigation }) {
   return (
     <ImageBackground
-    source={require('C:/Users/user/Desktop/Development/React native/Fourth/MyApp/assets/pop.jpg')}
+    source={require('../assets/polo.jpg')}
 
     style={styles.background}
   >
-  
     <View style={styles.container}>
-      <Text style={styles.text} >Press Login To add Email and password</Text>
+      <Text style={styles.text} >Press Login To Add Email and Password</Text>
       <Text style={styles.text} color='white'>OR</Text>
-      <Text style={styles.text}>Press Register To register yourself</Text>
+      <Text style={styles.text}>Press Register To register Yourself</Text>
       </View>
     <View style={styles.buttonContainer}>
-      <Button title="Register" onPress={() => navigation.navigate('Register')} color="green"/>
-      <Button title="Login" onPress={() => navigation.navigate('Login')} color="green" />
+      <Button title="Register" onPress={() => navigation.navigate('Personal')} color="green"/>
+      <Button title="Login" onPress={() => navigation.navigate('Login1')} color="green" />
     </View>
- 
-  
      </ImageBackground> 
   );
 };
