@@ -47,11 +47,12 @@ export default function Register({ navigation }) {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
-        <Text style={styles.text1}>Please enter the details</Text>
+        <Text style={styles.text1}>Please Enter The Details</Text>
 
         <Text style={styles.label}>Full Name</Text>
         <TextInput
           placeholder="Name"
+          placeholderTextColor="#dcdcdc" 
           style={styles.input}
           onChangeText={(text) => setFormData({ ...formData, name: text })}
         />
@@ -59,6 +60,7 @@ export default function Register({ navigation }) {
         <Text style={styles.label}>Mobile Number</Text>
         <TextInput
           placeholder="Mobile Number"
+          placeholderTextColor="#dcdcdc" 
           style={styles.input}
           keyboardType="numeric"
           onChangeText={(text) => setFormData({ ...formData, number: text })}
@@ -67,6 +69,7 @@ export default function Register({ navigation }) {
         <Text style={styles.label}>Email Address</Text>
         <TextInput
           placeholder="Email"
+          placeholderTextColor="#dcdcdc" 
           style={styles.input}
           keyboardType="email-address"
           onChangeText={(text) => setFormData({ ...formData, email: text })}
@@ -85,11 +88,12 @@ export default function Register({ navigation }) {
 
         <Text style={styles.label}>Your D.O.B</Text>
         <View style={styles.dobContainer}>
-        <View style={styles.dobInputContainer}>
+        <View style={styles.dobInputContainer }>
     <RNPickerSelect
       onValueChange={(value) => setFormData({ ...formData, dob: { ...formData.dob, day: value } })}
       items={days}
       placeholder={{ label: 'Day', value: null }}
+      placeholderTextColor="#dcdcdc" 
       style={pickerSelectStyles}
     />
     </View>
@@ -98,6 +102,7 @@ export default function Register({ navigation }) {
       onValueChange={(value) => setFormData({ ...formData, dob: { ...formData.dob, month: value } })}
       items={months}
       placeholder={{ label: 'Month', value: null }}
+      placeholderTextColor="#dcdcdc" 
       style={pickerSelectStyles}
     />
   </View>
@@ -106,6 +111,7 @@ export default function Register({ navigation }) {
       onValueChange={(value) => setFormData({ ...formData, dob: { ...formData.dob, year: value } })}
       items={years}
       placeholder={{ label: 'Year', value: null }}
+      placeholderTextColor="#dcdcdc" 
       style={pickerSelectStyles}
     />
   </View>
@@ -114,6 +120,7 @@ export default function Register({ navigation }) {
         <Text style={styles.label}>Your Address</Text>
         <TextInput
           placeholder="Type your address here"
+          placeholderTextColor="#dcdcdc" 
           style={[styles.input, { height: 90 }]}
           multiline
           onChangeText={(text) => setFormData({ ...formData, address: text })}
@@ -129,25 +136,27 @@ export default function Register({ navigation }) {
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    flexGrow: 1,
+    flex: 1,
     justifyContent: 'center',
     paddingBottom: 20,
+    paddingTop: 20,
   },
   container: {
     padding: 20,
-    backgroundColor: '#f0e68c',
+    backgroundColor: 'dimgray',
   },
   input: {
-    borderWidth: 1,
+    borderWidth: 2,
     borderColor: 'black',
     marginBottom: 10,
     paddingVertical: 10,
     paddingHorizontal: 15,
     borderRadius: 6,
-    backgroundColor: 'white',
+    backgroundColor: 'gray',
     fontSize: 16,
-    color: '#333',
+    color: '#dcdcdc',
     height: 50,
+   
   },
   picker: {
     borderWidth: 1,
@@ -155,18 +164,25 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     marginBottom: 10,
     height: 55,
-    backgroundColor: '#ffffff',
+    backgroundColor: 'gray',
     justifyContent: 'center',
+    color:"#dcdcdc"
+
   },
   label: {
-    fontSize: 18,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 8,
-    color: '#333',
+    color: 'black',
   },
   text: {
     fontSize: 24,
-    color: '#333',
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 20,
+  },
+  text1: {
+    fontSize: 24,
     fontWeight: '600',
     textAlign: 'center',
     marginBottom: 20,
@@ -178,12 +194,13 @@ const styles = StyleSheet.create({
   dobContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    backgroundColor: '',
     marginBottom: 10,
   },
   dobInputContainer: {
   flex: 1, 
   marginHorizontal: 5, 
-  backgroundColor: 'white', 
+  backgroundColor: 'gray', 
   borderWidth: 1,
   borderColor: 'black',
   borderRadius: 6,
@@ -191,12 +208,11 @@ const styles = StyleSheet.create({
   height: 50, 
 },
 text1:{
-  color:'green',
   fontSize: 29,
   fontWeight: '600',
   textAlign: 'center',
   marginBottom: 25,
-}
+},
 });
 
 const pickerSelectStyles = {
@@ -206,9 +222,9 @@ const pickerSelectStyles = {
     borderColor: 'transparent',
     borderRadius: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'white', 
+    backgroundColor: 'gray', 
     fontSize: 16,
-    color: '#333',
+    color: '#dcdcdc',
   },
   inputAndroid: {
     height: 60, 
@@ -216,8 +232,9 @@ const pickerSelectStyles = {
     borderColor: 'transparent',
     borderRadius: 5,
     paddingHorizontal: 10,
-    backgroundColor: 'white',
+    backgroundColor: 'gray',
     fontSize: 16,
-    color: '#333',
+    color: '#dcdcdc',
+    
   },
 };

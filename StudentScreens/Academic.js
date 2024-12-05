@@ -26,6 +26,7 @@ export default function Academic({ navigation }) {
       <TextInput
         style={styles.input}
         placeholder="School's Name"
+        placeholderTextColor="#dcdcdc" 
         value={schoolName}
         onChangeText={setSchoolName}
       />
@@ -34,6 +35,7 @@ export default function Academic({ navigation }) {
       <TextInput
         style={styles.input}
         placeholder="Current Class"
+        placeholderTextColor="#dcdcdc" 
         keyboardType='numeric'
         value={currentClass}
         onChangeText={setCurrentClass}
@@ -55,6 +57,7 @@ export default function Academic({ navigation }) {
       <TextInput
       style={[styles.input, { height: 90 }]}
         placeholder="Extra Activities"
+        placeholderTextColor="#dcdcdc" 
         value={extraActivities}
         multiline
         onChangeText={setExtraActivities}
@@ -68,7 +71,7 @@ export default function Academic({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: 'pink',
+    backgroundColor: 'dimgray',
     flex: 1,
   },
   headerText: {
@@ -87,19 +90,20 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     borderWidth: 1,
-    borderColor: 'green',
+    borderColor: 'black',
     borderRadius: 6,
     padding: 10,
     marginVertical: 10,
-    backgroundColor: '#fff',
+    backgroundColor: 'gray',
     fontSize: 16,
   },
   picker: {
     height: 60,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: 'black',
     borderRadius: 6,
     marginVertical: 10,
-    backgroundColor: '#fff',
+    backgroundColor: 'gray',
+    color: "#dcdcdc"
   },
 });

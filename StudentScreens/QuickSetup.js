@@ -4,7 +4,7 @@ import { Text,View, Button, StyleSheet, ImageBackground } from 'react-native';
 export default function QuickSetup({ navigation }) {
   return (
     <ImageBackground
-    source={require('../assets/lopo.jpg')}
+    source={require('../assets/lklk.jpg')}
 
     style={styles.background}
   >

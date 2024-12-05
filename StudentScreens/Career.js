@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TextInput,  StyleSheet, Button, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Picker } from '@react-native-picker/picker';
+import { ScrollView } from 'react-native-web';
 
 const Career = () => {
   const [careerField, setCareerField] = useState('');
@@ -32,6 +33,7 @@ const Career = () => {
       <TextInput
         style={styles.input}
         placeholder="Career Field"
+        placeholderTextColor="#dcdcdc" 
         value={careerField}
         onChangeText={setCareerField}
       />
@@ -41,6 +43,7 @@ const Career = () => {
       <TextInput
         style={styles.input}
         placeholder="Current Career Goals"
+        placeholderTextColor="#dcdcdc" 
         value={careerGoals}
         onChangeText={setCareerGoals}
       />
@@ -50,6 +53,7 @@ const Career = () => {
       <TextInput
         style={styles.input}
         placeholder="Challenges in Career Planning"
+        placeholderTextColor="#dcdcdc" 
         value={careerChallenges}
         onChangeText={setCareerChallenges}
       />
@@ -67,7 +71,7 @@ const Career = () => {
       </Picker>
 
       {/* Submit Button */}
-      <Button title="Submit" onPress={handleSubmit} />
+      <Button title="Submit" onPress={handleSubmit} color="green"/>
     </View>
   );
 };
@@ -76,7 +80,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: 'pink',
+    backgroundColor: 'dimgray',
   },
   heading: {
     fontSize: 35,
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   label: {
-    fontSize: 23,
+    fontSize:24,
     marginBottom:10,
     color: " black",
   },
@@ -95,13 +99,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginBottom: 20,
-    backgroundColor:'white',
+    backgroundColor:'gray',
     height: 55,
+    color: '#dcdcdc',
   },
   picker: {
     height: 59,
     marginBottom: 20,
-    backgroundColor: "white",
+    backgroundColor: "gray",
+    color: '#dcdcdc',
   },
 });
 

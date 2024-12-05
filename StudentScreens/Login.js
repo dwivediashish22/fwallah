@@ -48,10 +48,12 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
+         <Text style={styles.headerText}>Please Login Yourself As Student</Text>
       <Text style={styles.label}>Enter Email</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter Email"
+        placeholderTextColor="#dcdcdc" 
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
@@ -62,6 +64,7 @@ const Login = () => {
       <TextInput
         style={styles.input}
         placeholder="Enter Password"
+        placeholderTextColor="#dcdcdc" 
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -87,19 +90,19 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: 'center',
-    backgroundColor: 'pink',
+    backgroundColor: 'dimgray',
   },
   label: {
-    fontSize: 21,
+    fontSize: 26,
     marginBottom: 8,
   },
   input: {
     borderWidth: 2,
-    borderColor: 'green',
+    borderColor: 'black',
     borderRadius: 5,
     padding: 10,
     marginBottom: 20,
-    backgroundColor: 'white',
+    backgroundColor: 'gray',
   },
   button: {
     backgroundColor: 'green',
@@ -114,6 +117,14 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 18,
     fontWeight: 'bold',
+  },
+  headerText: {
+    fontSize: 33,
+    fontWeight: 'bold',
+    color: '',
+    marginBottom: 20,
+    textAlign: 'center',
+    marginBottom:90
   },
 });
 

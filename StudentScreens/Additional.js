@@ -17,6 +17,7 @@ const Additional = () => {
       <TextInput
         style={styles.input}
         placeholder="Learning Preference"
+        placeholderTextColor="#dcdcdc" 
         value={learningPreference}
         onChangeText={setLearningPreference}
       />
@@ -26,6 +27,7 @@ const Additional = () => {
       <TextInput
         style={styles.input}
         placeholder="Interests and Hobbies"
+        placeholderTextColor="#dcdcdc" 
         value={hobbies}
         onChangeText={setHobbies}
       />
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: 'pink',
+    backgroundColor: 'dimgray',
   },
   label: {
     fontSize: 16,
@@ -105,13 +107,14 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginBottom: 20,
-    backgroundColor:"white"
+    backgroundColor:"gray"
   },
   picker: {
     height: 60,
     padding: 0,
     marginBottom: 20,
-    backgroundColor:"white"
+    backgroundColor:"gray",
+    color:"#dcdcdc"
   },
 });
 

@@ -95,6 +95,7 @@ const WorkPre = () => {
           ]}
           style={pickerSelectStyles}
           placeholder={{ label: 'Select a day of the week', value: null }}
+          placeholderTextColor="#dcdcdc"
         />
       </View>
 
@@ -157,7 +158,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#ffe4b5',
+    backgroundColor: 'dimgray',
   },
   heading: {
     fontSize: 34,
@@ -167,28 +168,28 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   subHeading: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: '500',
-    color: '#555',
+    color: 'black',
     marginBottom: 5,
     marginTop: 10,
   },
   label: {
-    fontSize: 14,
-    color: '#444',
+    fontSize: 17,
+    color: 'black',
     marginBottom: 5,
   },
   pickerContainer: {
     borderWidth: 2,
-    borderColor: 'green',
+    borderColor: 'black',
     borderRadius: 5,
-    backgroundColor: 'white',
-    // padding: 10,
+    backgroundColor: 'gray',
+    color:'white',
     marginBottom: 20,
   },
   button: {
     marginTop: 30,
-    backgroundColor: '#007bff',
+    backgroundColor: 'green',
     paddingVertical: 12,
     borderRadius: 5,
     alignItems: 'center',
@@ -209,7 +210,7 @@ const pickerSelectStyles = {
   },
   inputAndroid: {
     fontSize: 14,
-    color: '#333',
+    color: 'white',
     backgroundColor: 'transparent',
   },
 };
