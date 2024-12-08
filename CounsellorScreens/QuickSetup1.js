@@ -14,7 +14,7 @@ export default function QuickSetup1({ navigation }) {
       <Text style={styles.text}>Press Register To register Yourself</Text>
       </View>
     <View style={styles.buttonContainer}>
-      <Button title="Register" onPress={() => navigation.navigate('Personal')} color="green"/>
+      <Button title="Register" onPress={() => navigation.navigate('Miscellaneous')} color="green"/>
       <Button title="Login" onPress={() => navigation.navigate('Login1')} color="green" />
     </View>
      </ImageBackground> 

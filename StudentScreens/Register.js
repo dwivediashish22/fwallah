@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: 'black',
     borderRadius: 5,
     padding: 10,
      backgroundColor:"white",
@@ -145,7 +145,8 @@ const styles = StyleSheet.create({
   picker: {
     height: 55,
     marginBottom: 15,
-     backgroundColor:"white"
+     backgroundColor:"white",
+     borderColor:"black"
   },
   dobInputContainer: {
     flexDirection: 'row',

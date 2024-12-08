@@ -31,51 +31,30 @@ const Miscellaneous = () => {
     return true;
   };
 
-  // // Handle resume upload (only allows PDF files)
-  // const handleResumeUpload = async () => {
-  //   const result = await DocumentPicker.getDocumentAsync({
-  //     type: '*/*', // Allow all document types
-  //   });
-
-  //   if (result.type === 'success') {
-  //     // Check if the file extension is .pdf
-  //     const fileExtension = result.name.split('.').pop().toLowerCase();
-  //     if (fileExtension === 'pdf') {
-  //       setResume(result);
-  //       Alert.alert('Success', 'Resume uploaded successfully!');
-  //     } else {
-  //       Alert.alert('Error', 'Please upload a PDF file.');
-  //     }
-  //   } else {
-  //     Alert.alert('Error', 'No document selected.');
-  //   }
-  // };
-
-  // Handle resume upload (only allows PDF files)
-const handleResumeUpload = async () => {
-  const result = await DocumentPicker.getDocumentAsync({
-    type: '*/*', // Allow all document types
-  });
-
-  // Debugging: Log the result to see what data is being returned
-  console.log(result);
-
-  if (result.type === 'success') {
-    // Check if the file extension is .pdf
-    const fileExtension = result.name.split('.').pop().toLowerCase();
-    if (fileExtension === 'pdf') {
-      setResume(result);
-      Alert.alert('Success', 'Resume uploaded successfully!');
-    } else {
-      Alert.alert('Error', 'Please upload a PDF file.');
+  const handleResumeUpload = async () => {
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: 'application/pdf', // Only allow PDF files
+        copyToCacheDirectory: true,
+      });
+  
+      console.log('Document Picker Result:', result);
+  
+      if (!result.canceled && result.assets && result.assets.length > 0) {
+        const file = result.assets[0];
+        setResume(file); // Save the first file in assets
+        Alert.alert('Success', `Resume uploaded: ${file.name}`);
+      } else if (result.canceled) {
+        Alert.alert('Cancelled', 'No document was selected.');
+      } else {
+        Alert.alert('Error', 'No valid document found in the selection.');
+      }
+    } catch (error) {
+      console.error('Error in handleResumeUpload:', error);
+      Alert.alert('Error', 'An unexpected error occurred during file selection.');
     }
-  } else {
-    // If the result type is not 'success', log it for debugging purposes
-    console.log('DocumentPicker result was not successful:', result);
-    Alert.alert('Error', 'No document selected.');
-  }
-};
-
+  };
+  
   // Handle profile picture upload
   const handleProfilePictureUpload = async () => {
     const hasPermission = await requestPermissions();
@@ -112,7 +91,7 @@ const handleResumeUpload = async () => {
     }
 
     // Navigate to ProfessionalAchievement with the uploaded data
-    navigation.navigate('ProfessionalAchievement', {
+    navigation.navigate('', {
       resume,
       profilePicture,
       socialMediaLink,

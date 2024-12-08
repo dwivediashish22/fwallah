@@ -29,7 +29,7 @@ export default function HomeScreen({ navigation }) {
         {/* Counsellor Button */}
         <TouchableOpacity
           style={[styles.button, styles.greenButton]}
-          onPress={() => navigation.navigate('Miscellaneous')}
+          onPress={() => navigation.navigate('QuickSetup1')}
         >
           <Text style={styles.buttonText}>Counsellor</Text>
         </TouchableOpacity>
