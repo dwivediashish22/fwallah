@@ -46,3 +46,47 @@ export default function App() {
       </Stack.Navigator>
     </NavigationContainer>
   )};
+// // Tab Navigator for Student Screens
+// function StudentTabs() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="QuickSetup" component={QuickSetup} />
+//       <Tab.Screen name="Login" component={Login} />
+//       <Tab.Screen name="Register" component={Register} />
+//       <Tab.Screen name="Parent" component={Parent} />
+//       <Tab.Screen name="Academic" component={Academic} />
+//       <Tab.Screen name="Career" component={Career} />
+//       <Tab.Screen name="Additional" component={Additional} />
+//     </Tab.Navigator>
+//   );
+// }
+
+// // Tab Navigator for Counsellor Screens
+// function CounsellorTabs() {
+//   return (
+//     <Tab.Navigator>
+//       <Tab.Screen name="QuickSetup1" component={QuickSetup1} />
+//       <Tab.Screen name="Login1" component={Login1} />
+//       <Tab.Screen name="Personal" component={Personal} />
+//       <Tab.Screen name="Professional" component={Professional} />
+//       <Tab.Screen name="WorkPre" component={WorkPre} />
+//       <Tab.Screen name="ProfessionalAchievement" component={ProfessionalAchievement} />
+//       <Tab.Screen name="Miscellaneous" component={Miscellaneous} />
+//     </Tab.Navigator>
+//   );
+// }
+
+// // Main App Navigator
+// export default function App() {
+//   return (
+//     <NavigationContainer>
+//       <Stack.Navigator initialRouteName="Home">
+//         {/* Home Screen */}
+//         <Stack.Screen name="Home" component={HomeScreen} />
+//         {/* Student and Counsellor Tab Navigators */}
+//         <Stack.Screen name="StudentScreens" component={StudentTabs} />
+//         <Stack.Screen name="CounsellorScreens" component={CounsellorTabs} />
+//       </Stack.Navigator>
+//     </NavigationContainer>
+//   );
+// }
