@@ -29,7 +29,7 @@ export default function HomeScreen({ navigation }) {
         {/* Counsellor Button */}
         <TouchableOpacity
           style={[styles.button, styles.greenButton]}
-          onPress={() => navigation.navigate('QuickSetup1')}
+          onPress={() => navigation.navigate('Miscellaneous')}
         >
           <Text style={styles.buttonText}>Counsellor</Text>
         </TouchableOpacity>
@@ -76,3 +76,4 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+

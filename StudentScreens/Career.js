@@ -33,7 +33,7 @@ const Career = () => {
       <TextInput
         style={styles.input}
         placeholder="Career Field"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         value={careerField}
         onChangeText={setCareerField}
       />
@@ -43,7 +43,7 @@ const Career = () => {
       <TextInput
         style={styles.input}
         placeholder="Current Career Goals"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         value={careerGoals}
         onChangeText={setCareerGoals}
       />
@@ -53,7 +53,7 @@ const Career = () => {
       <TextInput
         style={styles.input}
         placeholder="Challenges in Career Planning"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         value={careerChallenges}
         onChangeText={setCareerChallenges}
       />
@@ -71,7 +71,7 @@ const Career = () => {
       </Picker>
 
       {/* Submit Button */}
-      <Button title="Submit" onPress={handleSubmit} color="green"/>
+      <Button title="NEXT" onPress={handleSubmit} color="green"/>
     </View>
   );
 };
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: 'dimgray',
+    backgroundColor: 'silver',
   },
   heading: {
     fontSize: 35,
@@ -99,15 +99,15 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginBottom: 20,
-    backgroundColor:'gray',
+    backgroundColor:'#f0f8ff',
     height: 55,
-    color: '#dcdcdc',
+    color: '#333',
   },
   picker: {
     height: 59,
     marginBottom: 20,
-    backgroundColor: "gray",
-    color: '#dcdcdc',
+    backgroundColor: "#f0f8ff",
+    color: '#333',
   },
 });
 

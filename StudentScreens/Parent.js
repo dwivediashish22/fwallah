@@ -26,7 +26,7 @@ export default function Parent({ navigation }) {
       <Text style={styles.headerText}>Father's Name</Text>
       <TextInput
         placeholder="Father's Name"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         style={styles.input}
         value={fatherName}
         onChangeText={setFatherName}
@@ -35,7 +35,7 @@ export default function Parent({ navigation }) {
       <Text style={styles.headerText}>Father's Mobile Number</Text>
       <TextInput
         placeholder="Father's Mobile Number"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         style={styles.input}
         value={fatherMobile}
         onChangeText={setFatherMobile}
@@ -45,7 +45,7 @@ export default function Parent({ navigation }) {
       <Text style={styles.headerText}>Mother's Name</Text>
       <TextInput
         placeholder="Mother's Name"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         style={styles.input}
         value={motherName}
         onChangeText={setMotherName}
@@ -54,7 +54,7 @@ export default function Parent({ navigation }) {
       <Text style={styles.headerText}>Mother's Mobile Number</Text>
       <TextInput
         placeholder="Mother's Mobile Number"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         style={styles.input}
         value={motherMobile}
         onChangeText={setMotherMobile}
@@ -63,7 +63,7 @@ export default function Parent({ navigation }) {
 
 
 <View style={styles.buttonContainer}>
-          <Button title="Submit" onPress={handleSubmit} color="#4CAF50" />
+          <Button title="NEXT" onPress={handleSubmit} color="#4CAF50" />
         </View>
     </ScrollView>
   );
@@ -74,7 +74,7 @@ export default function Parent({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: 'dimgray',
+    backgroundColor: 'silver',
     flex: 1,
   },
   headerText: {
@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 10,
     marginVertical: 10,
-    backgroundColor: 'gray',
+    backgroundColor: '#f0f8ff',
     fontSize: 16,
     text:"white"
   },

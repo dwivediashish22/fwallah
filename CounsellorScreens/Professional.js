@@ -55,6 +55,7 @@ const Professional = () => {
           style={pickerSelectStyles}
           placeholder={{ label: 'Select your Master degree', value: null }}
         />
+
       </View>
 
       <Text style={styles.subHeading}>Certification</Text>
@@ -97,7 +98,7 @@ const Professional = () => {
       </View>
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Submit</Text>
+        <Text style={styles.buttonText}>NEXT</Text>
       </TouchableOpacity>
     </ScrollView>
   );
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: 'dimgray',
+    backgroundColor: 'silver',
   },
   heading: {
     fontSize: 34,
@@ -127,11 +128,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black',
     borderRadius: 5,
-    backgroundColor: 'gray',
+    backgroundColor: '#f0f8ff',
     padding: 0,
     marginBottom: 20,
     height: 55,
-    color: "#dcdcdc",
+    color: "",
+    placeholderTextColor:"#333" 
   },
   button: {
     marginTop: 30,
@@ -142,7 +144,7 @@ const styles = StyleSheet.create({
     marginBottom: 35,
   },
   buttonText: {
-    color: '#fff',
+    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
   },

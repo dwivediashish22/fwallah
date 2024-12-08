@@ -26,7 +26,7 @@ export default function Academic({ navigation }) {
       <TextInput
         style={styles.input}
         placeholder="School's Name"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         value={schoolName}
         onChangeText={setSchoolName}
       />
@@ -35,7 +35,7 @@ export default function Academic({ navigation }) {
       <TextInput
         style={styles.input}
         placeholder="Current Class"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         keyboardType='numeric'
         value={currentClass}
         onChangeText={setCurrentClass}
@@ -57,13 +57,13 @@ export default function Academic({ navigation }) {
       <TextInput
       style={[styles.input, { height: 90 }]}
         placeholder="Extra Activities"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         value={extraActivities}
         multiline
         onChangeText={setExtraActivities}
       />
 
-      <Button title="Submit" onPress={handleSubmit} color="#4CAF50" />
+      <Button title="NEXT" onPress={handleSubmit} color="#4CAF50" />
     </View>
   );
 }
@@ -71,7 +71,7 @@ export default function Academic({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: 'dimgray',
+    backgroundColor: 'silver',
     flex: 1,
   },
   headerText: {
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     padding: 10,
     marginVertical: 10,
-    backgroundColor: 'gray',
+    backgroundColor: '#f0f8ff',
     fontSize: 16,
   },
   picker: {
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
     borderRadius: 6,
     marginVertical: 10,
-    backgroundColor: 'gray',
-    color: "#dcdcdc"
+    backgroundColor: '#f0f8ff',
+    color: "#333"
   },
 });
