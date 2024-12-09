@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     justifyContent: "center",
     marginBottom: 20,
-    color: '#333',
+    color: 'black',
   },
   inputContainer: {
     marginBottom: 20,

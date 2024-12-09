@@ -77,15 +77,16 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 29,
     fontWeight: 'bold',
-    color: '',
+    color: 'black',
     marginBottom: 20,
     textAlign: 'center',
   },
   label: {
-    fontSize: 16,
+    fontSize: 19,
     fontWeight: 'bold',
     marginTop: 10,
-    color: '#333',
+    color: 'black',
+    fontWeight: 'bold',
   },
   input: {
     height: 50,

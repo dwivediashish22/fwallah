@@ -131,8 +131,8 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 19,
-    fontWeight: '600',
     marginVertical: 10,
+    fontWeight: 'bold',
   },
   input: {
     borderWidth: 1,

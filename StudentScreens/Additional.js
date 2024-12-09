@@ -94,12 +94,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'silver',
   },
   label: {
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 10,
+    color: 'black',
+    fontWeight: 'bold',
   },
   header:{
-     fontSize: 26,
+     fontSize: 29,
     marginBottom: 10,
+    color: 'black',
+    fontWeight: 'bold',
   },
   input: {
     borderWidth: 1,

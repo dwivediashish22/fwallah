@@ -21,7 +21,7 @@ export default function HomeScreen({ navigation }) {
         {/* Student Button */}
         <TouchableOpacity
           style={[styles.button, styles.greenButton]}
-          onPress={() => navigation.navigate('QuickSetup')}
+          onPress={() => navigation.navigate('StudentTabs')}
         >
           <Text style={styles.buttonText}>Student</Text>
         </TouchableOpacity>
@@ -29,7 +29,7 @@ export default function HomeScreen({ navigation }) {
         {/* Counsellor Button */}
         <TouchableOpacity
           style={[styles.button, styles.greenButton]}
-          onPress={() => navigation.navigate('QuickSetup1')}
+          onPress={() => navigation.navigate('CounsellorTabs')}
         >
           <Text style={styles.buttonText}>Counsellor</Text>
         </TouchableOpacity>
@@ -76,4 +76,3 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-

@@ -95,6 +95,7 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 26,
     marginBottom: 8,
+    fontWeight: 'bold',
   },
   input: {
     borderWidth: 2,

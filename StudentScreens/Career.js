@@ -71,8 +71,11 @@ const Career = () => {
       </Picker>
 
       {/* Submit Button */}
-      <Button title="NEXT" onPress={handleSubmit} color="green"/>
-    </View>
+      <View style={styles.buttonContainer}>
+          <Button title="NEXT" onPress={handleSubmit} color="#4CAF50" />
+        </View>
+      </View>
+
   );
 };
 
@@ -83,15 +86,16 @@ const styles = StyleSheet.create({
     backgroundColor: 'silver',
   },
   heading: {
-    fontSize: 35,
+    fontSize: 32,
     fontWeight: 'bold',
-    marginBottom: 40,
+    marginBottom: 30,
     textAlign: 'center',
   },
   label: {
-    fontSize:24,
+    fontSize:21,
     marginBottom:10,
     color: " black",
+    fontWeight: 'bold',
   },
   input: {
     borderWidth: 1,
@@ -108,6 +112,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: "#f0f8ff",
     color: '#333',
+  },
+  buttonContainer: {
+      marginTop: -10,
   },
 });
 
