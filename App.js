@@ -47,7 +47,7 @@ function StudentTabs() {
           backgroundColor: 'silver', // Set a clean background
           width: "100%",
         },
-        tabBarActiveTintColor: 'green', // Active tab color
+        tabBarActiveTintColor: '#adff2f', // Active tab color
         tabBarInactiveTintColor: 'black', // Inactive tab color
         tabBarLabelStyle: {
           fontSize: 16,
@@ -70,7 +70,10 @@ function StudentTabs() {
         borderWidth:2,
         borderRadius: 9,
         paddingHorizontal: 5,
-        
+        borderWidth:2,
+        backgroundColor: 'grey',
+        boxShadow:"9",
+        shadowColor: "black",
         },
       }}
         tabBarOptions={{
