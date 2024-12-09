@@ -73,7 +73,7 @@ function StudentTabs() {
         borderWidth:2,
         backgroundColor: 'grey',
         boxShadow:"9",
-        shadowColor: "black",
+        shadowColor: "black"
         },
       }}
         tabBarOptions={{
