@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Alert, Text, ScrollView } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Alert, Text, ScrollView, TouchableOpacity } from 'react-native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { Picker } from '@react-native-picker/picker';
-import RNPickerSelect from 'react-native-picker-select';
+import { Ionicons } from '@expo/vector-icons'; // For calendar icon (expo package)
 
 export default function Register({ navigation }) {
   const [formData, setFormData] = useState({
@@ -13,36 +14,27 @@ export default function Register({ navigation }) {
     dob: '',
   });
 
-  // Generate options for day, month, and year
-  const days = Array.from({ length: 31 }, (_, i) => ({ label: `${i + 1}`, value: i + 1 }));
-  const months = [
-    { label: 'January', value: 1 },
-    { label: 'February', value: 2 },
-    { label: 'March', value: 3 },
-    { label: 'April', value: 4 },
-    { label: 'May', value: 5 },
-    { label: 'June', value: 6 },
-    { label: 'July', value: 7 },
-    { label: 'August', value: 8 },
-    { label: 'September', value: 9 },
-    { label: 'October', value: 10 },
-    { label: 'November', value: 11 },
-    { label: 'December', value: 12 },
-  ];
-  const years = Array.from({ length: 2024 - 1985 + 1 }, (_, i) => ({ label: `${1985 + i}`, value: 1985 + i }));
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const handleDateConfirm = (date) => {
+    setFormData({
+      ...formData,
+      dob: date.toISOString().split('T')[0], // Format date as YYYY-MM-DD
+    });
+    setDatePickerVisibility(false);
+  };
 
   const handleSubmit = () => {
     const { name, number, email, gender, address, dob } = formData;
-    // Validate if any field is empty
-    if (!name || !number || !email || !gender || !address || !dob.day || !dob.month || !dob.year) {
+
+    if (!name || !number || !email || !gender || !address || !dob) {
       Alert.alert('Incomplete Form', 'You need to fill all the details.');
       return;
     }
-    // If all fields are filled
+
     Alert.alert('Form Submitted', JSON.stringify(formData));
     navigation.navigate('Parent');
   };
-  
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
@@ -52,7 +44,7 @@ export default function Register({ navigation }) {
         <Text style={styles.label}>Full Name</Text>
         <TextInput
           placeholder="Name"
-          placeholderTextColor="#dcdcdc" 
+          placeholderTextColor="#333"
           style={styles.input}
           onChangeText={(text) => setFormData({ ...formData, name: text })}
         />
@@ -60,7 +52,7 @@ export default function Register({ navigation }) {
         <Text style={styles.label}>Mobile Number</Text>
         <TextInput
           placeholder="Mobile Number"
-          placeholderTextColor="#dcdcdc" 
+          placeholderTextColor="#333"
           style={styles.input}
           keyboardType="numeric"
           onChangeText={(text) => setFormData({ ...formData, number: text })}
@@ -69,7 +61,7 @@ export default function Register({ navigation }) {
         <Text style={styles.label}>Email Address</Text>
         <TextInput
           placeholder="Email"
-          placeholderTextColor="#dcdcdc" 
+          placeholderTextColor="#333"
           style={styles.input}
           keyboardType="email-address"
           onChangeText={(text) => setFormData({ ...formData, email: text })}
@@ -87,47 +79,37 @@ export default function Register({ navigation }) {
         </Picker>
 
         <Text style={styles.label}>Your D.O.B</Text>
-        <View style={styles.dobContainer}>
-        <View style={styles.dobInputContainer }>
-    <RNPickerSelect
-      onValueChange={(value) => setFormData({ ...formData, dob: { ...formData.dob, day: value } })}
-      items={days}
-      placeholder={{ label: 'Day', value: null }}
-      placeholderTextColor="#dcdcdc" 
-      style={pickerSelectStyles}
-    />
-    </View>
-   <View style={styles.dobInputContainer}>
-    <RNPickerSelect
-      onValueChange={(value) => setFormData({ ...formData, dob: { ...formData.dob, month: value } })}
-      items={months}
-      placeholder={{ label: 'Month', value: null }}
-      placeholderTextColor="#dcdcdc" 
-      style={pickerSelectStyles}
-    />
-  </View>
-  <View style={styles.dobInputContainer}>
-    <RNPickerSelect
-      onValueChange={(value) => setFormData({ ...formData, dob: { ...formData.dob, year: value } })}
-      items={years}
-      placeholder={{ label: 'Year', value: null }}
-      placeholderTextColor="#dcdcdc" 
-      style={pickerSelectStyles}
-    />
-  </View>
-</View>
+        <View style={styles.dobInputContainer}>
+          <TextInput
+            placeholder="Select Date of Birth"
+            placeholderTextColor="#333"
+            style={[styles.input, { flex: 1 }]}
+            value={formData.dob}
+            editable={false} // Make this field readonly
+          />
+          <TouchableOpacity onPress={() => setDatePickerVisibility(true)} style={styles.calendarIcon}>
+            <Ionicons name="calendar-outline" size={24} color="black" />
+          </TouchableOpacity>
+        </View>
+
+        <DateTimePickerModal
+          isVisible={isDatePickerVisible}
+          mode="date"
+          onConfirm={handleDateConfirm}
+          onCancel={() => setDatePickerVisibility(false)}
+        />
 
         <Text style={styles.label}>Your Address</Text>
         <TextInput
           placeholder="Type your address here"
-          placeholderTextColor="#dcdcdc" 
+          placeholderTextColor="#333"
           style={[styles.input, { height: 90 }]}
           multiline
           onChangeText={(text) => setFormData({ ...formData, address: text })}
         />
 
         <View style={styles.buttonContainer}>
-          <Button title="Submit" onPress={handleSubmit} color="#4CAF50" />
+          <Button title="NEXT" onPress={handleSubmit} color="#4CAF50" />
         </View>
       </View>
     </ScrollView>
@@ -136,105 +118,53 @@ export default function Register({ navigation }) {
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    flex: 1,
-    justifyContent: 'center',
     paddingBottom: 20,
-    paddingTop: 20,
   },
   container: {
     padding: 20,
-    backgroundColor: 'dimgray',
-  },
-  input: {
-    borderWidth: 2,
-    borderColor: 'black',
-    marginBottom: 10,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 6,
-    backgroundColor: 'gray',
-    fontSize: 16,
-    color: '#dcdcdc',
-    height: 50,
-   
-  },
-  picker: {
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 6,
-    marginBottom: 10,
-    height: 55,
-    backgroundColor: 'gray',
-    justifyContent: 'center',
-    color:"#dcdcdc"
-
-  },
-  label: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    marginBottom: 8,
-    color: 'black',
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: '600',
-    textAlign: 'center',
-    marginBottom: 20,
+    backgroundColor:"silver"
   },
   text1: {
-    fontSize: 24,
-    fontWeight: '600',
-    textAlign: 'center',
+    fontSize: 29,
+    fontWeight: 'bold',
     marginBottom: 20,
   },
-  buttonContainer: {
-    marginTop: 10,
-    marginBottom: 20,
+  label: {
+    fontSize: 19,
+    marginVertical: 10,
+    fontWeight: 'bold',
   },
-  dobContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    backgroundColor: '',
-    marginBottom: 10,
+  input: {
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 5,
+    padding: 10,
+     backgroundColor:"white",
+    marginBottom: 15,
+  },
+  picker: {
+    height: 55,
+    marginBottom: 15,
+     backgroundColor:"white",
+     borderColor:"black"
   },
   dobInputContainer: {
-  flex: 1, 
-  marginHorizontal: 5, 
-  backgroundColor: 'gray', 
-  borderWidth: 1,
-  borderColor: 'black',
-  borderRadius: 6,
-  justifyContent: 'center',
-  height: 50, 
-},
-text1:{
-  fontSize: 29,
-  fontWeight: '600',
-  textAlign: 'center',
-  marginBottom: 25,
-},
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'silver',
+     backgroundColor:"silver",
+    borderRadius: 15,
+    marginBottom: 5,
+    padding: 10,
+  },
+  calendarIcon: {
+    marginLeft: -35,
+    marginTop: -14,
+    marginRight: 14,
+    borderRadius: 5,
+  },
+  buttonContainer: {
+    marginTop: 20,
+  },
 });
-
-const pickerSelectStyles = {
-  inputIOS: {
-    height: 50, 
-    borderWidth: 1,
-    borderColor: 'transparent',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    backgroundColor: 'gray', 
-    fontSize: 16,
-    color: '#dcdcdc',
-  },
-  inputAndroid: {
-    height: 60, 
-    borderWidth: 1,
-    borderColor: 'transparent',
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    backgroundColor: 'gray',
-    fontSize: 16,
-    color: '#dcdcdc',
-    
-  },
-};

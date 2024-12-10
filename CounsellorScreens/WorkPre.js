@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert, ScrollView } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { useNavigation } from '@react-navigation/native';
+import DateTimePickerModal from 'react-native-modal-datetime-picker';
+import { Ionicons } from '@expo/vector-icons'; // For calendar icon (expo)
 
 const WorkPre = () => {
   const navigation = useNavigation();
@@ -9,21 +11,16 @@ const WorkPre = () => {
   const [areaOfExpertise, setAreaOfExpertise] = useState('');
   const [targetAudience, setTargetAudience] = useState('');
   const [sessionalModel, setSessionalModel] = useState('');
-  const [availabilityDay, setAvailabilityDay] = useState('');
-  const [availabilityDate, setAvailabilityDate] = useState('');
-  const [availabilityMonth, setAvailabilityMonth] = useState('');
-  const [availabilityYear, setAvailabilityYear] = useState('');
+  const [availability, setAvailability] = useState(''); // Holds the selected date
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false); // Controls date picker visibility
+
+  const handleDateConfirm = (date) => {
+    setAvailability(date.toISOString().split('T')[0]); // Format date as YYYY-MM-DD
+    setDatePickerVisibility(false);
+  };
 
   const handleSubmit = () => {
-    if (
-      !areaOfExpertise ||
-      !targetAudience ||
-      !sessionalModel ||
-      !availabilityDay ||
-      !availabilityDate ||
-      !availabilityMonth ||
-      !availabilityYear
-    ) {
+    if (!areaOfExpertise || !targetAudience || !sessionalModel || !availability) {
       Alert.alert('Error', 'Please fill out all fields before submitting.');
       return;
     }
@@ -79,91 +76,40 @@ const WorkPre = () => {
       </View>
 
       <Text style={styles.subHeading}>Availability</Text>
-      
-      <Text style={styles.label}>Day of the Week</Text>
-      <View style={styles.pickerContainer}>
-        <RNPickerSelect
-          onValueChange={(value) => setAvailabilityDay(value)}
-          items={[
-            { label: 'Sunday', value: 'sunday' },
-            { label: 'Monday', value: 'monday' },
-            { label: 'Tuesday', value: 'tuesday' },
-            { label: 'Wednesday', value: 'wednesday' },
-            { label: 'Thursday', value: 'thursday' },
-            { label: 'Friday', value: 'friday' },
-            { label: 'Saturday', value: 'saturday' },
-          ]}
-          style={pickerSelectStyles}
-          placeholder={{ label: 'Select a day of the week', value: null }}
-          placeholderTextColor="#dcdcdc"
-        />
-      </View>
+      <TouchableOpacity
+        style={[styles.pickerContainer1, { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }]}
+        onPress={() => setDatePickerVisibility(true)}
+      >
+        <Text style={{ color: availability ? '#333' : 'gray', fontSize: 16 }}>
+          {availability || 'Select your availability date'}
+        </Text>
+        <Ionicons name="calendar-outline" size={24} color="black" />
+      </TouchableOpacity>
 
-      <Text style={styles.label}>Date of the Month</Text>
-      <View style={styles.pickerContainer}>
-        <RNPickerSelect
-          onValueChange={(value) => setAvailabilityDate(value)}
-          items={Array.from({ length: 31 }, (_, i) => ({
-            label: (i + 1).toString(),
-            value: i + 1,
-          }))}
-          style={pickerSelectStyles}
-          placeholder={{ label: 'Select a date (1-31)', value: null }}
-        />
-      </View>
-
-      <Text style={styles.label}>Month</Text>
-      <View style={styles.pickerContainer}>
-        <RNPickerSelect
-          onValueChange={(value) => setAvailabilityMonth(value)}
-          items={[
-            { label: 'January', value: 'january' },
-            { label: 'February', value: 'february' },
-            { label: 'March', value: 'march' },
-            { label: 'April', value: 'april' },
-            { label: 'May', value: 'may' },
-            { label: 'June', value: 'june' },
-            { label: 'July', value: 'july' },
-            { label: 'August', value: 'august' },
-            { label: 'September', value: 'september' },
-            { label: 'October', value: 'october' },
-            { label: 'November', value: 'november' },
-            { label: 'December', value: 'december' },
-          ]}
-          style={pickerSelectStyles}
-          placeholder={{ label: 'Select a month', value: null }}
-        />
-      </View>
-
-      <Text style={styles.label}>Year</Text>
-      <View style={styles.pickerContainer}>
-        <RNPickerSelect
-          onValueChange={(value) => setAvailabilityYear(value)}
-          items={Array.from({ length: 36 }, (_, i) => ({
-            label: (1985 + i).toString(),
-            value: 1985 + i,
-          }))}
-          style={pickerSelectStyles}
-          placeholder={{ label: 'Select a year (1985-2020)', value: null }}
-        />
-      </View>
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        onConfirm={handleDateConfirm}
+        onCancel={() => setDatePickerVisibility(false)}
+      />
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-        <Text style={styles.buttonText}>Submit</Text>
+        <Text style={styles.buttonText}>NEXT</Text>
       </TouchableOpacity>
     </ScrollView>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: 'dimgray',
+    backgroundColor: 'silver',
   },
   heading: {
     fontSize: 34,
     fontWeight: 'bold',
-    color: '#333',
+    color: 'black',
     marginBottom: 20,
     textAlign: 'center',
   },
@@ -183,9 +129,17 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: 'black',
     borderRadius: 5,
-    backgroundColor: 'gray',
-    color:'white',
+    backgroundColor: 'white',
     marginBottom: 20,
+    padding: -15,
+  },
+  pickerContainer1: {
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 15,
+    backgroundColor: 'white',
+    marginBottom: 20,
+    padding: 15,
   },
   button: {
     marginTop: 30,
@@ -210,8 +164,9 @@ const pickerSelectStyles = {
   },
   inputAndroid: {
     fontSize: 14,
-    color: 'white',
+    color: '#333',
     backgroundColor: 'transparent',
+    borderRadius: 15,
   },
 };
 

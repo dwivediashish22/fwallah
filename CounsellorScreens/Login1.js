@@ -48,12 +48,12 @@ const Login1 = () => {
 
   return (
     <View style={styles.container}>
-     <Text style={styles.headerText}>Please Login Yourself As Counsellor</Text>
+         <Text style={styles.headerText}>Please Login Yourself As Student</Text>
       <Text style={styles.label}>Enter Email</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter Email"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
@@ -64,7 +64,7 @@ const Login1 = () => {
       <TextInput
         style={styles.input}
         placeholder="Enter Password"
-        placeholderTextColor="#dcdcdc" 
+        placeholderTextColor="#333" 
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: 'center',
-    backgroundColor: 'dimgray',
+    backgroundColor: 'silver',
   },
   label: {
     fontSize: 26,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginBottom: 20,
-    backgroundColor: 'gray',
+    backgroundColor: '#f0f8ff',
   },
   button: {
     backgroundColor: 'green',
