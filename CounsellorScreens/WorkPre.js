@@ -4,6 +4,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import { useNavigation } from '@react-navigation/native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { Ionicons } from '@expo/vector-icons'; // For calendar icon (expo)
+import styles from '../styles.js';
 
 const WorkPre = () => {
   const navigation = useNavigation();
@@ -29,9 +30,9 @@ const WorkPre = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.heading}>ADD YOUR WORK PREFERENCES</Text>
+      <Text style={styles.text1}>ADD YOUR WORK PREFERENCES</Text>
 
-      <Text style={styles.subHeading}>Area Of Expertise</Text>
+      <Text style={styles.label}>Area Of Expertise</Text>
       <View style={styles.pickerContainer}>
         <RNPickerSelect
           onValueChange={(value) => setAreaOfExpertise(value)}
@@ -46,7 +47,7 @@ const WorkPre = () => {
         />
       </View>
 
-      <Text style={styles.subHeading}>Target Audience</Text>
+      <Text style={styles.label}>Target Audience</Text>
       <View style={styles.pickerContainer}>
         <RNPickerSelect
           onValueChange={(value) => setTargetAudience(value)}
@@ -61,7 +62,7 @@ const WorkPre = () => {
         />
       </View>
 
-      <Text style={styles.subHeading}>Professional Sessional Models</Text>
+      <Text style={styles.label}>Professional Sessional Models</Text>
       <View style={styles.pickerContainer}>
         <RNPickerSelect
           onValueChange={(value) => setSessionalModel(value)}
@@ -75,7 +76,7 @@ const WorkPre = () => {
         />
       </View>
 
-      <Text style={styles.subHeading}>Availability</Text>
+      <Text style={styles.label}>Availability</Text>
       <TouchableOpacity
         style={[styles.pickerContainer1, { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }]}
         onPress={() => setDatePickerVisibility(true)}
@@ -100,61 +101,6 @@ const WorkPre = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: 'silver',
-  },
-  heading: {
-    fontSize: 34,
-    fontWeight: 'bold',
-    color: 'black',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  subHeading: {
-    fontSize: 22,
-    fontWeight: '500',
-    color: 'black',
-    marginBottom: 5,
-    marginTop: 10,
-  },
-  label: {
-    fontSize: 17,
-    color: 'black',
-    marginBottom: 5,
-  },
-  pickerContainer: {
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 5,
-    backgroundColor: 'white',
-    marginBottom: 20,
-    padding: -15,
-  },
-  pickerContainer1: {
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 15,
-    backgroundColor: 'white',
-    marginBottom: 20,
-    padding: 15,
-  },
-  button: {
-    marginTop: 30,
-    backgroundColor: 'green',
-    paddingVertical: 12,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginBottom: 35,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
 
 const pickerSelectStyles = {
   inputIOS: {

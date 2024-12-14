@@ -8,17 +8,18 @@ import { View, Text, StyleSheet } from 'react-native';
 import HomeScreen from './StudentScreens/HomeScreen';
 
 // Student Screens
-import QuickSetup from './StudentScreens/QuickSetup';
-import Login from './StudentScreens/Login';
-import Register from './StudentScreens/Register';
-import Parent from './StudentScreens/Parent';
+// import QuickSetup from './StudentScreens/QuickSetup';
+// import Login from './StudentScreens/Login';
+import StudentBasic from './StudentScreens/StudentBasic';
+import Guardian from './StudentScreens/Guardian-Info';
 import Academic from './StudentScreens/Academic';
 import Career from './StudentScreens/Career';
 import Additional from './StudentScreens/Additional';
 
+
 // Counsellor Screens
-import QuickSetup1 from './CounsellorScreens/QuickSetup1';
-import Login1 from './CounsellorScreens/Login1';
+// import QuickSetup1 from './CounsellorScreens/QuickSetup1';
+// import Login1 from './CounsellorScreens/Login1';
 import Personal from './CounsellorScreens/Personal';
 import Professional from './CounsellorScreens/Professional';
 import WorkPre from './CounsellorScreens/WorkPre';
@@ -81,13 +82,13 @@ function StudentTabs() {
       }}
    
     >
-      <TopTab.Screen name="QuickSetup" component={QuickSetup} />
-      <TopTab.Screen name="Login" component={Login} />
-      <TopTab.Screen name="Register" component={Register} />
-      <TopTab.Screen name="Parent" component={Parent} />
-      <TopTab.Screen name="Academic" component={Academic} />
-      <TopTab.Screen name="Career" component={Career} />
-      <TopTab.Screen name="Additional" component={Additional} />
+      {/* <TopTab.Screen name="QuickSetup" component={QuickSetup} />
+      <TopTab.Screen name="Login" component={Login} /> */}
+      <TopTab.Screen name="Student's Basic Info" component={StudentBasic} />
+      <TopTab.Screen name="Guardian Info" component={Guardian} />
+      <TopTab.Screen name="Academic Info" component={Academic} />
+      <TopTab.Screen name="Career Info" component={Career} />
+      <TopTab.Screen name="Additional Info" component={Additional} />
     </TopTab.Navigator>
   );
 }
@@ -132,8 +133,8 @@ function CounsellorTabs() {
         },
       }}
     >
-      <TopTab.Screen name="QuickSetup1" component={QuickSetup1} />
-      <TopTab.Screen name="Login1" component={Login1} />
+      {/* <TopTab.Screen name="QuickSetup1" component={QuickSetup1} />
+      <TopTab.Screen name="Login1" component={Login1} /> */}
       <TopTab.Screen name="Personal" component={Personal} />
       <TopTab.Screen name="Professional" component={Professional} />
       <TopTab.Screen name="WorkPre" component={WorkPre} />
@@ -148,7 +149,7 @@ function CounsellorTabs() {
 function StudentScreen() {
   return (
     <>
-      <ScreenHeader title="StudentTabs" />
+      <ScreenHeader title="Student's Profile" />
       <StudentTabs />
     </>
   );
@@ -158,7 +159,7 @@ function StudentScreen() {
 function CounsellorScreen() {
   return (
     <>
-      <ScreenHeader title="CounsellorTabs" />
+      <ScreenHeader title="Counsellor's Profile" />
       <CounsellorTabs />
     </>
   );
@@ -174,14 +175,14 @@ export default function App() {
 
         {/* Student Tabs */}
         <Stack.Screen
-          name="StudentTabs"
+          name="StudentProfile"
           component={StudentScreen}
           options={{ headerShown: false }}
         />
 
         {/* Counsellor Tabs */}
         <Stack.Screen
-          name="CounsellorTabs"
+          name="CounsellorProfile"
           component={CounsellorScreen}
           options={{ headerShown: false }}
         />

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Alert,ScrollView } from 'react-native';
 import RNPickerSelect from 'react-native-picker-select';
 import { useNavigation } from '@react-navigation/native';
+import styles from '../styles.js';
 
 const Professional = () => {
   const navigation = useNavigation();
@@ -23,9 +24,9 @@ const Professional = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.heading}>Add Professional Information</Text>
+      <Text style={styles.text1}>Add Professional Information</Text>
 
-      <Text style={styles.subHeading}>Bachelor</Text>
+      <Text style={styles.label}>Bachelor</Text>
       <View style={styles.pickerContainer}>
         <RNPickerSelect
           onValueChange={(value) => setBachelor(value)}
@@ -41,7 +42,7 @@ const Professional = () => {
         />
       </View>
 
-      <Text style={styles.subHeading}>Master</Text>
+      <Text style={styles.label}>Master</Text>
       <View style={styles.pickerContainer}>
         <RNPickerSelect
           onValueChange={(value) => setMaster(value)}
@@ -58,7 +59,7 @@ const Professional = () => {
 
       </View>
 
-      <Text style={styles.subHeading}>Certification</Text>
+      <Text style={styles.label}>Certification</Text>
       <View style={styles.pickerContainer}>
         <RNPickerSelect
           onValueChange={(value) => setCertification(value)}
@@ -71,7 +72,7 @@ const Professional = () => {
         />
       </View>
 
-      <Text style={styles.subHeading}>Psychology</Text>
+      <Text style={styles.label}>Psychology</Text>
       <View style={styles.pickerContainer}>
         <RNPickerSelect
           onValueChange={(value) => setPsychology(value)}
@@ -84,7 +85,7 @@ const Professional = () => {
         />
       </View>
 
-      <Text style={styles.subHeading}>Career Guidance</Text>
+      <Text style={styles.label}>Career Guidance</Text>
       <View style={styles.pickerContainer}>
         <RNPickerSelect
           onValueChange={(value) => setCareerGuidance(value)}
@@ -104,51 +105,51 @@ const Professional = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: 'silver',
-  },
-  heading: {
-    fontSize: 34,
-    fontWeight: 'bold',
-    color: 'black',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  subHeading: {
-    fontSize: 21,
-    fontWeight: '500',
-    color: 'black',
-    marginBottom: 5,
-    marginTop: 10,
-  },
-  pickerContainer: {
-    borderWidth: 2,
-    borderColor: 'black',
-    borderRadius: 5,
-    backgroundColor: '#f0f8ff',
-    padding: 0,
-    marginBottom: 20,
-    height: 55,
-    color: "",
-    placeholderTextColor:"#333" 
-  },
-  button: {
-    marginTop: 30,
-    backgroundColor: 'green',
-    paddingVertical: 12,
-    borderRadius: 5,
-    alignItems: 'center',
-    marginBottom: 35,
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-});
+
+//   container: {
+//     flex: 1,
+//     padding: 20,
+//     backgroundColor: 'silver',
+//   },
+//   heading: {
+//     fontSize: 34,
+//     fontWeight: 'bold',
+//     color: 'black',
+//     marginBottom: 20,
+//     textAlign: 'center',
+//   },
+//   subHeading: {
+//     fontSize: 21,
+//     fontWeight: '500',
+//     color: 'black',
+//     marginBottom: 5,
+//     marginTop: 10,
+//   },
+//   pickerContainer: {
+//     borderWidth: 2,
+//     borderColor: 'black',
+//     borderRadius: 5,
+//     backgroundColor: '#f0f8ff',
+//     padding: 0,
+//     marginBottom: 20,
+//     height: 55,
+//     color: "",
+//     placeholderTextColor:"#333" 
+//   },
+//   button: {
+//     marginTop: 30,
+//     backgroundColor: 'green',
+//     paddingVertical: 12,
+//     borderRadius: 5,
+//     alignItems: 'center',
+//     marginBottom: 35,
+//   },
+//   buttonText: {
+//     color: 'white',
+//     fontSize: 16,
+//     fontWeight: 'bold',
+//   },
+// });
 
 const pickerSelectStyles = {
   inputIOS: {

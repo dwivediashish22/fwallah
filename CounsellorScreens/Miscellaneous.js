@@ -11,6 +11,7 @@ import * as DocumentPicker from 'expo-document-picker'; // Document picker for r
 import * as ImagePicker from 'expo-image-picker'; // Image picker for profile pictures
 import * as Clipboard from 'expo-clipboard'; // Clipboard for pasting links
 import { useNavigation } from '@react-navigation/native';
+import styles from '../styles.js';
 
 const Miscellaneous = () => {
   const [resume, setResume] = useState(null);
@@ -100,10 +101,10 @@ const Miscellaneous = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.mainHeading}>Add your Profile</Text>
+      <Text style={styles.text1}>Upload your Profile</Text>
 
       {/* Upload Resume */}
-      <Text style={styles.subHeading}>Upload Resume</Text>
+      <Text style={styles.label}>Upload Your Resume</Text>
       <TouchableOpacity style={styles.button} onPress={handleResumeUpload}>
         <Text style={styles.buttonText}>
           {resume ? `Uploaded: ${resume.name}` : 'Upload Resume'}
@@ -111,7 +112,7 @@ const Miscellaneous = () => {
       </TouchableOpacity>
 
       {/* Profile Picture */}
-      <Text style={styles.subHeading}>Profile Picture</Text>
+      <Text style={styles.label}>Upload your Profile Picture</Text>
       <TouchableOpacity style={styles.button} onPress={handleProfilePictureUpload}>
         <Text style={styles.buttonText}>
           {profilePicture
@@ -121,7 +122,7 @@ const Miscellaneous = () => {
       </TouchableOpacity>
 
       {/* Social Media Link */}
-      <Text style={styles.subHeading}>Social Media Link</Text>
+      <Text style={styles.label}>Paste your Social Media Link</Text>
       <View style={styles.row}>
         <TextInput
           style={styles.input}
@@ -142,74 +143,4 @@ const Miscellaneous = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: 'silver',
-  },
-  mainHeading: {
-    fontSize: 34,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  subHeading: {
-    fontSize: 20,
-    fontWeight: '600',
-    marginBottom: 10,
-  },
-  row: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  input: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 8,
-    padding: 10,
-    fontSize: 16,
-    backgroundColor: 'white',
-  },
-  pasteButton: {
-    marginLeft: 10,
-    backgroundColor: '#007BFF',
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 8,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  pasteButtonText: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: 'bold',
-  },
-  button: {
-    backgroundColor: '#007BFF',
-    padding: 15,
-    borderRadius: 8,
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  submitButton: {
-    backgroundColor: '#28a745',
-    padding: 15,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  submitButtonText: {
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});
-
 export default Miscellaneous;

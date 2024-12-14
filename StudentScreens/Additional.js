@@ -1,23 +1,85 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet,  } from 'react-native';
+import {
+  ScrollView,
+  Text,
+  TextInput,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { Picker } from '@react-native-picker/picker';
+import { Ionicons } from '@expo/vector-icons';
+import * as DocumentPicker from 'expo-document-picker'; // For uploading resume
+import styles from '../styles.js';
 
 const Additional = () => {
   const [learningPreference, setLearningPreference] = useState('');
   const [hobbies, setHobbies] = useState('');
   const [availability, setAvailability] = useState('');
-  const [preferredDay, setPreferredDay] = useState('');
-  const [preferredTime, setPreferredTime] = useState('');
+  const [preferredDate, setPreferredDate] = useState(new Date());
+  const [preferredTime, setPreferredTime] = useState(new Date());
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
   const [hearAboutUs, setHearAboutUs] = useState('');
+  const [resume, setResume] = useState(null);
+
+  const handleDateChange = (event, selectedDate) => {
+    setShowDatePicker(false);
+    if (selectedDate) {
+      setPreferredDate(selectedDate);
+    }
+  };
+
+  const handleTimeChange = (event, selectedTime) => {
+    setShowTimePicker(false);
+    if (selectedTime) {
+      setPreferredTime(selectedTime);
+    }
+  };
+
+  const handleResumeUpload = async () => {
+    try {
+      const result = await DocumentPicker.getDocumentAsync({
+        type: 'application/pdf', // Only allow PDF files
+        copyToCacheDirectory: true,
+      });
+  
+      console.log('Document Picker Result:', result);
+  
+      if (!result.canceled && result.assets && result.assets.length > 0) {
+        const file = result.assets[0];
+        setResume(file); // Save the first file in assets
+        Alert.alert('Success', `Resume uploaded: ${file.name}`);
+      } else if (result.canceled) {
+        Alert.alert('Cancelled', 'No document was selected.');
+      } else {
+        Alert.alert('Error', 'No valid document found in the selection.');
+      }
+    } catch (error) {
+      console.error('Error in handleResumeUpload:', error);
+      Alert.alert('Error', 'An unexpected error occurred during file selection.');
+    }
+  };
+
+  const handleSubmit = () => {
+    if (!resume) {
+      Alert.alert('Error', 'Please upload your resume before submitting.');
+      return;
+    }
+    Alert.alert('Success', 'Form submitted successfully!');
+    // Submit form data to the server or process further
+  };
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
+    <Text style={styles.text1}>Add Your Additional Details</Text>
       {/* Learning Preference */}
-      <Text style={styles.header}>Learning Preference</Text>
+      <Text style={styles.label}>Learning Preference</Text>
       <TextInput
         style={styles.input}
         placeholder="Learning Preference"
-        placeholderTextColor="#333" 
+        placeholderTextColor="#333"
         value={learningPreference}
         onChangeText={setLearningPreference}
       />
@@ -27,7 +89,7 @@ const Additional = () => {
       <TextInput
         style={styles.input}
         placeholder="Interests and Hobbies"
-        placeholderTextColor="#333" 
+        placeholderTextColor="#333"
         value={hobbies}
         onChangeText={setHobbies}
       />
@@ -43,34 +105,43 @@ const Additional = () => {
         <Picker.Item label="No" value="no" />
       </Picker>
 
-      {/* Preferred Day and Time */}
-      <Text style={styles.label}>Preferred Day</Text>
-      <Picker
-        selectedValue={preferredDay}
-        style={styles.picker}
-        onValueChange={(itemValue) => setPreferredDay(itemValue)}
+      {/* Preferred Date */}
+      <Text style={styles.label}>Preferred Date</Text>
+      <TouchableOpacity
+        style={styles.datePickerButton}
+        onPress={() => setShowDatePicker(true)}
       >
-        {[...Array(31).keys()].map((day) => (
-          <Picker.Item key={day} label={`Day ${day + 1}`} value={`Day ${day + 1}`} />
-        ))}
-      </Picker>
+        <Ionicons name="calendar-outline" size={24} color="#333" />
+        <Text style={styles.datePickerText}>{preferredDate.toDateString()}</Text>
+      </TouchableOpacity>
+      {showDatePicker && (
+        <DateTimePicker
+          value={preferredDate}
+          mode="date"
+          display="default"
+          onChange={handleDateChange}
+        />
+      )}
 
+      {/* Preferred Time */}
       <Text style={styles.label}>Preferred Time</Text>
-      <Picker
-        selectedValue={preferredTime}
-        style={styles.picker}
-        onValueChange={(itemValue) => setPreferredTime(itemValue)}
+      <TouchableOpacity
+        style={styles.datePickerButton}
+        onPress={() => setShowTimePicker(true)}
       >
-        {[...Array(24).keys()].map((hour) =>
-          [...Array(60).keys()].filter((minute) => minute % 15 === 0).map((minute) => (
-            <Picker.Item
-              key={`${hour}:${minute}`}
-              label={`${hour}:${minute < 10 ? `0${minute}` : minute}`}
-              value={`${hour}:${minute}`}
-            />
-          ))
-        )}
-      </Picker>
+        <Ionicons name="time-outline" size={24} color="#333" />
+        <Text style={styles.datePickerText}>
+          {preferredTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+        </Text>
+      </TouchableOpacity>
+      {showTimePicker && (
+        <DateTimePicker
+          value={preferredTime}
+          mode="time"
+          display="default"
+          onChange={handleTimeChange}
+        />
+      )}
 
       {/* How Did You Hear About Us */}
       <Text style={styles.label}>How Did You Hear About Us</Text>
@@ -83,43 +154,22 @@ const Additional = () => {
         <Picker.Item label="Social Media" value="social_media" />
         <Picker.Item label="Website" value="website" />
       </Picker>
-    </View>
+
+      {/* Upload Resume */}
+      <Text style={styles.label}>Upload Resume</Text>
+      <TouchableOpacity style={styles.button} onPress={handleResumeUpload}>
+        <Text style={styles.buttonText}>
+          {resume ? `Uploaded: ${resume.name}` : 'Upload Resume'}
+        </Text>
+      </TouchableOpacity>
+
+      {/* Submit Button */}
+      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+        <Text style={styles.submitButtonText}>Submit</Text>
+      </TouchableOpacity>
+    </ScrollView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: 'silver',
-  },
-  label: {
-    fontSize: 18,
-    marginBottom: 10,
-    color: 'black',
-    fontWeight: 'bold',
-  },
-  header:{
-     fontSize: 29,
-    marginBottom: 10,
-    color: 'black',
-    fontWeight: 'bold',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 20,
-    backgroundColor:"#f0f8ff"
-  },
-  picker: {
-    height: 60,
-    padding: 0,
-    marginBottom: 20,
-    backgroundColor:"#f0f8ff",
-    color:"#333"
-  },
-});
 
 export default Additional;

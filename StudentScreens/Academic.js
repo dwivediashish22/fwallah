@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet, Button, Alert } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
+import styles from '../styles.js';
 
 export default function Academic({ navigation }) {
   const [schoolName, setSchoolName] = useState('');
@@ -20,7 +21,7 @@ export default function Academic({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.headerText}>Fill in Your Academic Details</Text>
+      <Text style={styles.text1}>Fill in Your Academic Details</Text>
 
       <Text style={styles.label}>School Name</Text>
       <TextInput
@@ -68,43 +69,3 @@ export default function Academic({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: 'silver',
-    flex: 1,
-  },
-  headerText: {
-    fontSize: 29,
-    fontWeight: 'bold',
-    color: 'black',
-    marginBottom: 20,
-    textAlign: 'center',
-  },
-  label: {
-    fontSize: 19,
-    fontWeight: 'bold',
-    marginTop: 10,
-    color: 'black',
-    fontWeight: 'bold',
-  },
-  input: {
-    height: 50,
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 6,
-    padding: 10,
-    marginVertical: 10,
-    backgroundColor: '#f0f8ff',
-    fontSize: 16,
-  },
-  picker: {
-    height: 60,
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 6,
-    marginVertical: 10,
-    backgroundColor: '#f0f8ff',
-    color: "#333"
-  },
-});

@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import styles from '../styles.js';
 import { View, TextInput, Button, StyleSheet, Alert, Text, ScrollView, TouchableOpacity } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { Picker } from '@react-native-picker/picker';
-import { Ionicons } from '@expo/vector-icons'; // For calendar icon (expo package)
+import { Ionicons } from '@expo/vector-icons';
 
-export default function Register({ navigation }) {
+
+export default function StudentBasic ({ navigation }) {
   const [formData, setFormData] = useState({
     name: '',
     number: '',
@@ -33,13 +35,13 @@ export default function Register({ navigation }) {
     }
 
     Alert.alert('Form Submitted', JSON.stringify(formData));
-    navigation.navigate('Parent');
+    navigation.navigate('Guardian-Info');
   };
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
-        <Text style={styles.text1}>Please Enter The Details</Text>
+        <Text style={styles.text1}>Please Enter your Basic Information</Text>
 
         <Text style={styles.label}>Full Name</Text>
         <TextInput
@@ -115,56 +117,3 @@ export default function Register({ navigation }) {
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  scrollContainer: {
-    paddingBottom: 20,
-  },
-  container: {
-    padding: 20,
-    backgroundColor:"silver"
-  },
-  text1: {
-    fontSize: 29,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  label: {
-    fontSize: 19,
-    marginVertical: 10,
-    fontWeight: 'bold',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 5,
-    padding: 10,
-     backgroundColor:"white",
-    marginBottom: 15,
-  },
-  picker: {
-    height: 55,
-    marginBottom: 15,
-     backgroundColor:"white",
-     borderColor:"black"
-  },
-  dobInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'silver',
-     backgroundColor:"silver",
-    borderRadius: 15,
-    marginBottom: 5,
-    padding: 10,
-  },
-  calendarIcon: {
-    marginLeft: -35,
-    marginTop: -14,
-    marginRight: 14,
-    borderRadius: 5,
-  },
-  buttonContainer: {
-    marginTop: 20,
-  },
-});

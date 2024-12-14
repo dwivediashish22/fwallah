@@ -3,6 +3,7 @@ import { View, TextInput, Button, StyleSheet, Alert, Text, ScrollView, Touchable
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { Picker } from '@react-native-picker/picker';
 import { Ionicons } from '@expo/vector-icons'; // For calendar icon (expo package)
+import styles from '../styles.js';
 
 export default function Register({ navigation }) {
   const [formData, setFormData] = useState({
@@ -116,54 +117,54 @@ export default function Register({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  scrollContainer: {
-    paddingBottom: 20,
-  },
-  container: {
-    padding: 20,
-    backgroundColor:"silver"
-  },
-  text1: {
-    fontSize: 29,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  label: {
-    fontSize: 19,
-    fontWeight: '600',
-    marginVertical: 10,
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    padding: 10,
-     backgroundColor:"white",
-    marginBottom: 15,
-  },
-  picker: {
-    height: 55,
-    marginBottom: 15,
-     backgroundColor:"white"
-  },
-  dobInputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1,
-    borderColor: 'silver',
-     backgroundColor:"silver",
-    borderRadius: 15,
-    marginBottom: 5,
-    padding: 10,
-  },
-  calendarIcon: {
-    marginLeft: -35,
-    marginTop: -14,
-    marginRight: 14,
-    borderRadius: 5,
-  },
-  buttonContainer: {
-    marginTop: 20,
-  },
-});
+
+//   scrollContainer: {
+//     paddingBottom: 20,
+//   },
+//   container: {
+//     padding: 20,
+//     backgroundColor:"silver"
+//   },
+//   text1: {
+//     fontSize: 29,
+//     fontWeight: 'bold',
+//     marginBottom: 20,
+//   },
+//   label: {
+//     fontSize: 19,
+//     fontWeight: '600',
+//     marginVertical: 10,
+//   },
+//   input: {
+//     borderWidth: 1,
+//     borderColor: '#ccc',
+//     borderRadius: 5,
+//     padding: 10,
+//      backgroundColor:"white",
+//     marginBottom: 15,
+//   },
+//   picker: {
+//     height: 55,
+//     marginBottom: 15,
+//      backgroundColor:"white"
+//   },
+//   dobInputContainer: {
+//     flexDirection: 'row',
+//     alignItems: 'center',
+//     borderWidth: 1,
+//     borderColor: 'silver',
+//      backgroundColor:"silver",
+//     borderRadius: 15,
+//     marginBottom: 5,
+//     padding: 10,
+//   },
+//   calendarIcon: {
+//     marginLeft: -35,
+//     marginTop: -14,
+//     marginRight: 14,
+//     borderRadius: 5,
+//   },
+//   buttonContainer: {
+//     marginTop: 20,
+//   },
+// });

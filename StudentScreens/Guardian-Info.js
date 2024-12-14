@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { View, TextInput, Text, StyleSheet, ScrollView, Button } from 'react-native';
+import styles from '../styles.js';
+
+
 
 export default function Parent({ navigation }) {
   const [fatherName, setFatherName] = useState('');
@@ -21,9 +24,9 @@ export default function Parent({ navigation }) {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-     <Text style={styles.headerText1}>Parent's Information</Text>
-      <Text style={styles.headerText}>Father's Name</Text>
+    <ScrollView style={styles.container}>
+     <Text style={styles.text1}>Parent's Information</Text>
+      <Text style={styles.label}>Father's Name</Text>
       <TextInput
         placeholder="Father's Name"
         placeholderTextColor="#333" 
@@ -32,7 +35,7 @@ export default function Parent({ navigation }) {
         onChangeText={setFatherName}
       />
 
-      <Text style={styles.headerText}>Father's Mobile Number</Text>
+      <Text style={styles.label}>Father's Mobile Number</Text>
       <TextInput
         placeholder="Father's Mobile Number"
         placeholderTextColor="#333" 
@@ -42,7 +45,7 @@ export default function Parent({ navigation }) {
         keyboardType="numeric"
       />
 
-      <Text style={styles.headerText}>Mother's Name</Text>
+      <Text style={styles.label}>Mother's Name</Text>
       <TextInput
         placeholder="Mother's Name"
         placeholderTextColor="#333" 
@@ -51,7 +54,7 @@ export default function Parent({ navigation }) {
         onChangeText={setMotherName}
       />
 
-      <Text style={styles.headerText}>Mother's Mobile Number</Text>
+      <Text style={styles.label}>Mother's Mobile Number</Text>
       <TextInput
         placeholder="Mother's Mobile Number"
         placeholderTextColor="#333" 
@@ -70,39 +73,37 @@ export default function Parent({ navigation }) {
 }
 
 
-  
-const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    backgroundColor: 'silver',
-    flex: 1,
-  },
-  headerText: {
-    fontSize: 21,
-    fontWeight: 'bold',
-    marginTop: 20,
-    color: 'black',
-  },
-  input: {
-    borderWidth: 1,
-    borderColor: 'black',
-    borderRadius: 6,
-    padding: 10,
-    marginVertical: 10,
-    backgroundColor: '#f0f8ff',
-    fontSize: 16,
-    text:"white"
-  },
-  headerText1:{
-    fontSize: 33,
-    fontWeight: 'bold',
-    marginTop: 10,
-    marginBottom: 20,
-    color:'black', 
-    marginLeft:'19'
-  },
-  buttonContainer:{
-marginTop:20,
-borderColor: "black",
-  }
-});
+//   scrollContainer: {
+//     padding: 20,
+//     backgroundColor: 'silver',
+//     flex: 1,
+//   },
+//   headerText: {
+//     fontSize: 21,
+//     fontWeight: 'bold',
+//     marginTop: 20,
+//     color: 'black',
+//   },
+//   input: {
+//     borderWidth: 1,
+//     borderColor: 'black',
+//     borderRadius: 6,
+//     padding: 10,
+//     marginVertical: 10,
+//     backgroundColor: '#f0f8ff',
+//     fontSize: 16,
+//     text:"white"
+//   },
+//   headerText1:{
+//     fontSize: 33,
+//     fontWeight: 'bold',
+//     marginTop: 10,
+//     marginBottom: 20,
+//     color:'black', 
+//     marginLeft:'19'
+//   },
+//   buttonContainer:{
+// marginTop:20,
+// borderColor: "black",
+//   }
+// });
