@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, TextInput, Button, Alert, Text, ScrollView, TouchableOpacity } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { Picker } from '@react-native-picker/picker';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { useCountryStateDistrict } from '../ConstantApi';
 import styles from '../styles.js';
 
-export default function StudentBasic({ navigation }) {
+export default function StudentBasic() {
+  const navigation = useNavigation();
   const [formData, setFormData] = useState({
     name: '',
     number: '',
@@ -18,77 +21,15 @@ export default function StudentBasic({ navigation }) {
     district: '',
   });
 
+  const {
+    countries = [],
+    states = [],
+    districts = [],
+    fetchStates,
+    fetchDistricts,
+  } = useCountryStateDistrict();
+
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [countries, setCountries] = useState([]);
-  const [states, setStates] = useState([]);
-  const [districts, setDistricts] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  // Fetch countries on initial render
-  useEffect(() => {
-    const fetchCountries = async () => {
-      try {
-        const response = await fetch('https://api1.he.nic.in/aishemasterservice/api/country');
-        const data = await response.json();
-        setCountries(data || []); // Fallback to empty array if data is null
-      } catch (error) {
-        console.error('Error fetching countries:', error);
-        Alert.alert('Error', 'Failed to load countries.');
-      }
-    };
-
-    fetchCountries();
-  }, []);
-
-  // Fetch states when country changes
-  useEffect(() => {
-    if (formData.country) {
-      const fetchStates = async () => {
-        setLoading(true);
-        try {
-          const response = await fetch(
-            `https://api1.he.nic.in/aishemasterservice/api/state?country=${formData.country}`
-          );
-          const data = await response.json();
-          setStates(data || []); // Fallback to empty array if data is null
-        } catch (error) {
-          console.error('Error fetching states:', error);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      fetchStates();
-      // Clear previously selected state and district
-      setFormData((prevFormData) => ({ ...prevFormData, state: '', district: '' }));
-      setDistricts([]); // Clear districts
-    } else {
-      setStates([]); // Clear states if no country is selected
-    }
-  }, [formData.country]);
-
-  // Fetch districts when state changes
-  useEffect(() => {
-    if (formData.state) {
-      const fetchDistricts = async () => {
-        try {
-          const response = await fetch(
-            `https://api1.he.nic.in/aishemasterservice/api/district/${formData.state}`
-          );
-          const data = await response.json();
-          setDistricts(data || []); // Fallback to empty array if data is null
-        } catch (error) {
-          console.error('Error fetching districts:', error);
-        }
-      };
-
-      fetchDistricts();
-      // Clear previously selected district
-      setFormData((prevFormData) => ({ ...prevFormData, district: '' }));
-    } else {
-      setDistricts([]); // Clear districts if no state is selected
-    }
-  }, [formData.state]);
 
   const handleDateConfirm = (date) => {
     setFormData({
@@ -99,9 +40,9 @@ export default function StudentBasic({ navigation }) {
   };
 
   const handleSubmit = () => {
-    const { name, number, email, gender, address, dob, country, state, district } = formData;
+    const { name, number, email, gender, address, dob } = formData;
 
-    if (!name || !number || !email || !gender || !address || !dob || !country || !state || !district) {
+    if (!name || !number || !email || !gender || !address || !dob) {
       Alert.alert('Incomplete Form', 'You need to fill all the details.');
       return;
     }
@@ -115,6 +56,7 @@ export default function StudentBasic({ navigation }) {
       <View style={styles.container}>
         <Text style={styles.text1}>Please Enter your Basic Information</Text>
 
+        {/* Full Name */}
         <Text style={styles.label}>Full Name</Text>
         <TextInput
           placeholder="Name"
@@ -123,6 +65,7 @@ export default function StudentBasic({ navigation }) {
           onChangeText={(text) => setFormData({ ...formData, name: text })}
         />
 
+        {/* Mobile Number */}
         <Text style={styles.label}>Mobile Number</Text>
         <TextInput
           placeholder="Mobile Number"
@@ -132,6 +75,7 @@ export default function StudentBasic({ navigation }) {
           onChangeText={(text) => setFormData({ ...formData, number: text })}
         />
 
+        {/* Email Address */}
         <Text style={styles.label}>Email Address</Text>
         <TextInput
           placeholder="Email"
@@ -141,6 +85,7 @@ export default function StudentBasic({ navigation }) {
           onChangeText={(text) => setFormData({ ...formData, email: text })}
         />
 
+        {/* Gender */}
         <Text style={styles.label}>Gender</Text>
         <Picker
           selectedValue={formData.gender}
@@ -152,44 +97,7 @@ export default function StudentBasic({ navigation }) {
           <Picker.Item label="Female" value="female" />
         </Picker>
 
-        <Text style={styles.label}>Country</Text>
-        <Picker
-          selectedValue={formData.country}
-          style={styles.picker}
-          onValueChange={(itemValue) => setFormData({ ...formData, country: itemValue })}
-        >
-          <Picker.Item label="Select Country" value="" />
-          {countries.map((country, index) => (
-            <Picker.Item key={`country-${index}`} label={country.name} value={country.id || index} />
-          ))}
-        </Picker>
-
-        <Text style={styles.label}>State</Text>
-        <Picker
-          selectedValue={formData.state}
-          style={styles.picker}
-          onValueChange={(itemValue) => setFormData({ ...formData, state: itemValue })}
-        >
-          <Picker.Item label="Select State" value="" />
-          {states.map((state, index) => (
-            <Picker.Item key={`state-${index}`} label={state.name} value={state.id || index} />
-          ))}
-        </Picker>
-
-        <Text style={styles.label}>District</Text>
-        <Picker
-          selectedValue={formData.district}
-          style={styles.picker}
-          onValueChange={(itemValue) => setFormData({ ...formData, district: itemValue })}
-        >
-          <Picker.Item label="Select District" value="" />
-          {districts.map((district, index) => (
-            <Picker.Item key={`district-${index}`} label={district.name} value={district.id || index} />
-          ))}
-        </Picker>
-
-       
-
+        {/* Date of Birth */}
         <Text style={styles.label}>Your D.O.B</Text>
         <View style={styles.dobInputContainer}>
           <TextInput
@@ -211,6 +119,52 @@ export default function StudentBasic({ navigation }) {
           onCancel={() => setDatePickerVisibility(false)}
         />
 
+        {/* Country */}
+        <Text style={styles.label}>Country</Text>
+        <Picker
+          selectedValue={formData.country}
+          style={styles.picker}
+          onValueChange={(itemValue) => {
+            setFormData({ ...formData, country: itemValue, state: '', district: '' });
+            fetchStates(itemValue);
+          }}
+        >
+          <Picker.Item label="Select Country" value="" />
+          {countries.map((country) => (
+            <Picker.Item key={country.id} label={country.name} value={country.id} />
+          ))}
+        </Picker>
+
+        {/* State */}
+        <Text style={styles.label}>State</Text>
+        <Picker
+          selectedValue={formData.state}
+          style={styles.picker}
+          onValueChange={(itemValue) => {
+            setFormData({ ...formData, state: itemValue, district: '' });
+            fetchDistricts(itemValue);
+          }}
+        >
+          <Picker.Item label="Select State" value="" />
+          {states.map((state) => (
+            <Picker.Item key={state.id} label={state.name} value={state.id} />
+          ))}
+        </Picker>
+
+        {/* District */}
+        <Text style={styles.label}>District</Text>
+        <Picker
+          selectedValue={formData.district}
+          style={styles.picker}
+          onValueChange={(itemValue) => setFormData({ ...formData, district: itemValue })}
+        >
+          <Picker.Item label="Select District" value="" />
+          {districts.map((district) => (
+            <Picker.Item key={district.id} label={district.name} value={district.id} />
+          ))}
+        </Picker>
+
+        {/* Address */}
         <Text style={styles.label}>Your Address</Text>
         <TextInput
           placeholder="Type your address here"
@@ -220,6 +174,7 @@ export default function StudentBasic({ navigation }) {
           onChangeText={(text) => setFormData({ ...formData, address: text })}
         />
 
+        {/* Submit Button */}
         <View style={styles.buttonContainer}>
           <Button title="NEXT" onPress={handleSubmit} color="#4CAF50" />
         </View>
