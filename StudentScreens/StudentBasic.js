@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import styles from '../styles.js';
-import { View, TextInput, Button, StyleSheet, Alert, Text, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, TextInput, Button, Alert, Text, ScrollView, TouchableOpacity } from 'react-native';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { Picker } from '@react-native-picker/picker';
 import { Ionicons } from '@expo/vector-icons';
+import styles from '../styles.js';
 
-
-export default function StudentBasic ({ navigation }) {
+export default function StudentBasic({ navigation }) {
   const [formData, setFormData] = useState({
     name: '',
     number: '',
@@ -14,9 +13,82 @@ export default function StudentBasic ({ navigation }) {
     gender: '',
     address: '',
     dob: '',
+    country: '',
+    state: '',
+    district: '',
   });
 
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [districts, setDistricts] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  // Fetch countries on initial render
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const response = await fetch('https://api1.he.nic.in/aishemasterservice/api/country');
+        const data = await response.json();
+        setCountries(data || []); // Fallback to empty array if data is null
+      } catch (error) {
+        console.error('Error fetching countries:', error);
+        Alert.alert('Error', 'Failed to load countries.');
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
+  // Fetch states when country changes
+  useEffect(() => {
+    if (formData.country) {
+      const fetchStates = async () => {
+        setLoading(true);
+        try {
+          const response = await fetch(
+            `https://api1.he.nic.in/aishemasterservice/api/state?country=${formData.country}`
+          );
+          const data = await response.json();
+          setStates(data || []); // Fallback to empty array if data is null
+        } catch (error) {
+          console.error('Error fetching states:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchStates();
+      // Clear previously selected state and district
+      setFormData((prevFormData) => ({ ...prevFormData, state: '', district: '' }));
+      setDistricts([]); // Clear districts
+    } else {
+      setStates([]); // Clear states if no country is selected
+    }
+  }, [formData.country]);
+
+  // Fetch districts when state changes
+  useEffect(() => {
+    if (formData.state) {
+      const fetchDistricts = async () => {
+        try {
+          const response = await fetch(
+            `https://api1.he.nic.in/aishemasterservice/api/district/${formData.state}`
+          );
+          const data = await response.json();
+          setDistricts(data || []); // Fallback to empty array if data is null
+        } catch (error) {
+          console.error('Error fetching districts:', error);
+        }
+      };
+
+      fetchDistricts();
+      // Clear previously selected district
+      setFormData((prevFormData) => ({ ...prevFormData, district: '' }));
+    } else {
+      setDistricts([]); // Clear districts if no state is selected
+    }
+  }, [formData.state]);
 
   const handleDateConfirm = (date) => {
     setFormData({
@@ -27,15 +99,15 @@ export default function StudentBasic ({ navigation }) {
   };
 
   const handleSubmit = () => {
-    const { name, number, email, gender, address, dob } = formData;
+    const { name, number, email, gender, address, dob, country, state, district } = formData;
 
-    if (!name || !number || !email || !gender || !address || !dob) {
+    if (!name || !number || !email || !gender || !address || !dob || !country || !state || !district) {
       Alert.alert('Incomplete Form', 'You need to fill all the details.');
       return;
     }
 
     Alert.alert('Form Submitted', JSON.stringify(formData));
-    navigation.navigate('Guardian-Info');
+    navigation.navigate('Guardian-Info'); // Ensure Guardian-Info is registered in the navigator
   };
 
   return (
@@ -79,6 +151,44 @@ export default function StudentBasic ({ navigation }) {
           <Picker.Item label="Male" value="male" />
           <Picker.Item label="Female" value="female" />
         </Picker>
+
+        <Text style={styles.label}>Country</Text>
+        <Picker
+          selectedValue={formData.country}
+          style={styles.picker}
+          onValueChange={(itemValue) => setFormData({ ...formData, country: itemValue })}
+        >
+          <Picker.Item label="Select Country" value="" />
+          {countries.map((country, index) => (
+            <Picker.Item key={`country-${index}`} label={country.name} value={country.id || index} />
+          ))}
+        </Picker>
+
+        <Text style={styles.label}>State</Text>
+        <Picker
+          selectedValue={formData.state}
+          style={styles.picker}
+          onValueChange={(itemValue) => setFormData({ ...formData, state: itemValue })}
+        >
+          <Picker.Item label="Select State" value="" />
+          {states.map((state, index) => (
+            <Picker.Item key={`state-${index}`} label={state.name} value={state.id || index} />
+          ))}
+        </Picker>
+
+        <Text style={styles.label}>District</Text>
+        <Picker
+          selectedValue={formData.district}
+          style={styles.picker}
+          onValueChange={(itemValue) => setFormData({ ...formData, district: itemValue })}
+        >
+          <Picker.Item label="Select District" value="" />
+          {districts.map((district, index) => (
+            <Picker.Item key={`district-${index}`} label={district.name} value={district.id || index} />
+          ))}
+        </Picker>
+
+       
 
         <Text style={styles.label}>Your D.O.B</Text>
         <View style={styles.dobInputContainer}>
