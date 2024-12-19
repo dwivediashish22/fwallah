@@ -10,7 +10,7 @@ import {
 export default function HomeScreen({ navigation }) {
   return (
     <ImageBackground
-      source={require('../assets/lklk.jpg')} // Ensure this path is correct
+      source={require('../assets/Home.jpg')} // Ensure this path is correct
       style={styles.background}
       resizeMode="cover"
     >
@@ -60,19 +60,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    width: '70%',
-    padding: 15,
-    borderRadius: 10,
+    width:"70%",
+    padding: 12, 
     alignItems: 'center',
     marginVertical: 10,
-    elevation: 5, // Adds shadow to the button
+    borderRadius: 20, // Rounded corners (increase for more curvature)
+    elevation: 83, // Adds a shadow on Android
+    shadowColor: 'white', // Shadow color for iOS
   },
   greenButton: {
-    backgroundColor: '#4CAF50', // Green color
+    backgroundColor: 'orange',
+    borderCurve:10, 
+     // Green color
   },
   buttonText: {
     color: 'white',
-    fontSize: 19,
+    fontSize: 20,
     fontWeight: 'bold',
   },
 });

@@ -32,7 +32,7 @@ const ProfessionalAchievement = () => {
         <Text style={styles.label}>Work History</Text>
         <TextInput
           style={styles.input}
-          placeholder="List of Organisations where you worked"
+          placeholder="List of Organizations where you worked"
           placeholderTextColor="gray"
           value={workHistory}
           onChangeText={setWorkHistory}

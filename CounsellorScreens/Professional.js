@@ -82,6 +82,7 @@ const Professional = () => {
           ]}
           style={pickerSelectStyles}
           placeholder={{ label: 'Do you have knowledge of psychology?', value: null }}
+          
         />
       </View>
 
@@ -105,52 +106,6 @@ const Professional = () => {
   );
 };
 
-
-//   container: {
-//     flex: 1,
-//     padding: 20,
-//     backgroundColor: 'silver',
-//   },
-//   heading: {
-//     fontSize: 34,
-//     fontWeight: 'bold',
-//     color: 'black',
-//     marginBottom: 20,
-//     textAlign: 'center',
-//   },
-//   subHeading: {
-//     fontSize: 21,
-//     fontWeight: '500',
-//     color: 'black',
-//     marginBottom: 5,
-//     marginTop: 10,
-//   },
-//   pickerContainer: {
-//     borderWidth: 2,
-//     borderColor: 'black',
-//     borderRadius: 5,
-//     backgroundColor: '#f0f8ff',
-//     padding: 0,
-//     marginBottom: 20,
-//     height: 55,
-//     color: "",
-//     placeholderTextColor:"#333" 
-//   },
-//   button: {
-//     marginTop: 30,
-//     backgroundColor: 'green',
-//     paddingVertical: 12,
-//     borderRadius: 5,
-//     alignItems: 'center',
-//     marginBottom: 35,
-//   },
-//   buttonText: {
-//     color: 'white',
-//     fontSize: 16,
-//     fontWeight: 'bold',
-//   },
-// });
-
 const pickerSelectStyles = {
   inputIOS: {
     fontSize: 14,
@@ -159,7 +114,8 @@ const pickerSelectStyles = {
   },
   inputAndroid: {
     fontSize: 14,
-    color: '#333',
+    color: 'black',
+     placeholderTextColor:"black",
     backgroundColor: 'transparent',
   },
 };

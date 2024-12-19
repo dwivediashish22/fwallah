@@ -2,24 +2,19 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 // Import HomeScreen
 import HomeScreen from './StudentScreens/HomeScreen';
 
 // Student Screens
-// import QuickSetup from './StudentScreens/QuickSetup';
-// import Login from './StudentScreens/Login';
 import StudentBasic from './StudentScreens/StudentBasic';
 import Guardian from './StudentScreens/Guardian-Info';
 import Academic from './StudentScreens/Academic';
 import Career from './StudentScreens/Career';
 import Additional from './StudentScreens/Additional';
 
-
 // Counsellor Screens
-// import QuickSetup1 from './CounsellorScreens/QuickSetup1';
-// import Login1 from './CounsellorScreens/Login1';
 import Personal from './CounsellorScreens/Personal';
 import Professional from './CounsellorScreens/Professional';
 import WorkPre from './CounsellorScreens/WorkPre';
@@ -29,11 +24,17 @@ import Miscellaneous from './CounsellorScreens/Miscellaneous';
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
 
-// Header Component to display screen name above the tabs
+// Header Component to display screen name above the tabs with icons
 function ScreenHeader({ title }) {
+  // Decide which icon to show based on the title
+  const iconSource =
+    title === "Student's Profile"
+      ? require('./assets/student.png') // Path to Student icon
+      : require('./assets/counselor.png')
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerText}>{title}</Text>
+      <Image source={iconSource} style={styles.icon} />
     </View>
   );
 }
@@ -44,46 +45,43 @@ function StudentTabs() {
     <TopTab.Navigator
       screenOptions={{
         tabBarStyle: {
-          flexDirection: 'column', // Arrange tabs vertically
-          backgroundColor: 'silver', // Set a clean background
-          width: "100%",
+          flexDirection: 'column', 
+          backgroundColor: 'silver', 
+          width: "150%",
+          paddingLeft: 8,
+          paddingRight: 220,
+        
         },
-        tabBarActiveTintColor: '#adff2f', // Active tab color
-        tabBarInactiveTintColor: 'black', // Inactive tab color
+        tabBarActiveTintColor: '#9acd32',
+        tabBarInactiveTintColor: 'black',
         tabBarLabelStyle: {
           fontSize: 16,
           fontWeight: 'bold',
           textAlign: 'center',
-          transform: [{ rotate: '360 deg' }], // Rotate text to appear vertically
+          transform: [{ rotate: '360 deg' }],
         },
         tabBarIndicatorStyle: {
-          backgroundColor: 'green', // Highlight the active tab
+          backgroundColor: 'silver',
           width: 35,
-          height: 3, // Adjust to a vertical indicator
+          height: 5,
         },
         tabBarItemStyle: {
           justifyContent: 'center',
           alignItems: 'center',
           height: 80,
-          borderWidth: 1,
-        borderColor: 'black',
-        marginHorizontal: 1,
-        borderWidth:2,
-        borderRadius: 9,
-        paddingHorizontal: 5,
-        borderWidth:2,
-        backgroundColor: 'grey',
-        boxShadow:"9",
-        shadowColor: "black"
+          borderWidth: 2,
+          borderColor: 'black',
+          marginHorizontal: 5,
+          borderRadius: 9,
+          paddingHorizontal: 5,
+          backgroundColor: 'gray',
+          shadowColor: 'black',
         },
       }}
-        tabBarOptions={{
-        scrollEnabled: true, // Allow horizontal scrolling
+      tabBarOptions={{
+        scrollEnabled: true,
       }}
-   
     >
-      {/* <TopTab.Screen name="QuickSetup" component={QuickSetup} />
-      <TopTab.Screen name="Login" component={Login} /> */}
       <TopTab.Screen name="Student's Basic Info" component={StudentBasic} />
       <TopTab.Screen name="Guardian Info" component={Guardian} />
       <TopTab.Screen name="Academic Info" component={Academic} />
@@ -99,51 +97,47 @@ function CounsellorTabs() {
     <TopTab.Navigator
       screenOptions={{
         tabBarStyle: {
-          flexDirection: 'column', // Arrange tabs vertically
-          backgroundColor: 'silver', // Set a clean background
-          width: "100%",
-         
+          flexDirection: 'column', 
+          backgroundColor: 'silver',
+          width: "150%",
+          paddingLeft: 8,
+          paddingRight: 220,
         },
-        tabBarActiveTintColor: '#adff2f', // Active tab color
-        tabBarInactiveTintColor: 'black', // Inactive tab color
+        tabBarActiveTintColor: '#9acd32',
+        tabBarInactiveTintColor: 'black',
         tabBarLabelStyle: {
-          fontSize: 16,
+          fontSize: 14,
           fontWeight: 'bold',
           textAlign: 'center',
-          transform: [{ rotate: '360 deg' }], // Rotate text to appear vertically
+          transform: [{ rotate: '360 deg' }],
         },
         tabBarIndicatorStyle: {
-          backgroundColor: 'green', // Highlight the active tab
+          backgroundColor: 'silver',
           width: 35,
-          height: 3, // Adjust to a vertical indicator
+          height: 3,
         },
         tabBarItemStyle: {
           justifyContent: 'center',
           alignItems: 'center',
           height: 80,
-          borderWidth: 1,
-        borderColor: 'black',
-        marginHorizontal: 1,
-        borderRadius: 8,
-        paddingHorizontal: 1,
-        borderWidth:2,
-        backgroundColor: 'grey',
-        boxShadow:"9",
-        shadowColor: "black",
+          borderWidth: 2,
+          borderColor: 'black',
+          marginHorizontal: 1,
+          borderRadius: 8,
+          paddingHorizontal: 1,
+          backgroundColor: 'gray',
+          shadowColor: 'black',
         },
       }}
     >
-      {/* <TopTab.Screen name="QuickSetup1" component={QuickSetup1} />
-      <TopTab.Screen name="Login1" component={Login1} /> */}
-      <TopTab.Screen name="Personal" component={Personal} />
-      <TopTab.Screen name="Professional" component={Professional} />
-      <TopTab.Screen name="WorkPre" component={WorkPre} />
-      <TopTab.Screen name="ProfessionalAchievement" component={ProfessionalAchievement} />
+      <TopTab.Screen name="Personal Info" component={Personal} />
+      <TopTab.Screen name="Professional Info" component={Professional} />
+      <TopTab.Screen name="Work Preference" component={WorkPre} />
+      <TopTab.Screen name="Professional Achievement" component={ProfessionalAchievement} />
       <TopTab.Screen name="Miscellaneous" component={Miscellaneous} />
     </TopTab.Navigator>
   );
 }
-
 
 // Main Student Screen with Header & Tabs
 function StudentScreen() {
@@ -170,7 +164,6 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="HomeScreen">
-        {/* Home Screen */}
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
 
         {/* Student Tabs */}
@@ -195,15 +188,22 @@ export default function App() {
 const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: 'silver',
-    paddingVertical: 8,
+    paddingVertical: 3,
+    flexDirection: 'row',
     alignItems: 'center',
-    borderBottomWidth: 0,
+    justifyContent: 'center',
     borderBottomColor: 'gray',
-    paddingTop:30
+    paddingTop: 39,
+    paddingBottom: 20,
   },
   headerText: {
     fontSize: 30,
     fontWeight: 'bold',
     color: 'black',
+  },
+  icon: {
+    width: 40,        // Adjust icon width
+    height: 40,       // Adjust icon height
+    marginLeft: 10,   // Add spacing between text and icon
   },
 });
