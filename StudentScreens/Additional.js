@@ -157,7 +157,7 @@ const Additional = () => {
 
       {/* Upload Resume */}
       <Text style={styles.label}>Upload Resume</Text>
-      <TouchableOpacity style={styles.button} onPress={handleResumeUpload}>
+      <TouchableOpacity style={styles.pasteButton} onPress={handleResumeUpload}>
         <Text style={styles.buttonText}>
           {resume ? `Uploaded: ${resume.name}` : 'Upload Resume'}
         </Text>

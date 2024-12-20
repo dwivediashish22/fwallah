@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput,  StyleSheet, Button, Alert } from 'react-native';
+import { View, Text, TextInput,  StyleSheet, Button, Alert,TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Picker } from '@react-native-picker/picker';
 import { ScrollView } from 'react-native-web';
@@ -71,10 +71,10 @@ const Career = () => {
         <Picker.Item label="No" value="no" />
       </Picker>
 
-      {/* Submit Button */}
-      <View style={styles.buttonContainer}>
-          <Button title="NEXT" onPress={handleSubmit} color="#4CAF50" />
-        </View>
+        {/* Submit Button */}
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.submitButtonText}>NEXT</Text>
+      </TouchableOpacity>
       </View>
 
   );

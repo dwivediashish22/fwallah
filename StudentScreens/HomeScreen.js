@@ -10,7 +10,7 @@ import {
 export default function HomeScreen({ navigation }) {
   return (
     <ImageBackground
-      source={require('../assets/Home.jpg')} // Ensure this path is correct
+      source={require('../assets/Home.jpg')}
       style={styles.background}
       resizeMode="cover"
     >

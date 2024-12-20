@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useCountryStateDistrict } from '../ConstantApi';
 import styles from '../styles.js';
 
-export default function Register() {
+export default function Personal() {
   const navigation = useNavigation();
   const [formData, setFormData] = useState({
     name: '',
@@ -175,9 +175,9 @@ export default function Register() {
         />
 
         {/* Submit Button */}
-        <View style={styles.buttonContainer}>
-          <Button title="NEXT" onPress={handleSubmit} color="#4CAF50" />
-        </View>
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.submitButtonText}>NEXT</Text>
+      </TouchableOpacity>
       </View>
     </ScrollView>
   );

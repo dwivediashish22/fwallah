@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TextInput, Text, StyleSheet, ScrollView, Button } from 'react-native';
+import { View, TextInput, Text, StyleSheet, ScrollView, Button,TouchableOpacity } from 'react-native';
 import styles from '../styles.js';
 
 
@@ -65,45 +65,11 @@ export default function Parent({ navigation }) {
       />
 
 
-<View style={styles.buttonContainer}>
-          <Button title="NEXT" onPress={handleSubmit} color="#4CAF50" />
-        </View>
+
+        {/* Submit Button */}
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.submitButtonText}>NEXT</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 }
-
-
-//   scrollContainer: {
-//     padding: 20,
-//     backgroundColor: 'silver',
-//     flex: 1,
-//   },
-//   headerText: {
-//     fontSize: 21,
-//     fontWeight: 'bold',
-//     marginTop: 20,
-//     color: 'black',
-//   },
-//   input: {
-//     borderWidth: 1,
-//     borderColor: 'black',
-//     borderRadius: 6,
-//     padding: 10,
-//     marginVertical: 10,
-//     backgroundColor: '#f0f8ff',
-//     fontSize: 16,
-//     text:"white"
-//   },
-//   headerText1:{
-//     fontSize: 33,
-//     fontWeight: 'bold',
-//     marginTop: 10,
-//     marginBottom: 20,
-//     color:'black', 
-//     marginLeft:'19'
-//   },
-//   buttonContainer:{
-// marginTop:20,
-// borderColor: "black",
-//   }
-// });

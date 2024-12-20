@@ -65,8 +65,8 @@ const ProfessionalAchievement = () => {
       </View>
 
       {/* Submit Button */}
-      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-        <Text style={styles.submitButtonText}>NEXT</Text>
+      <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.button2}>NEXT</Text>
       </TouchableOpacity>
     </View>
   );

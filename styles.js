@@ -6,7 +6,13 @@ const styles = StyleSheet.create({
   scrollContainer: {
    backgroundColor:'silver',
     paddingBottom: 20,
+   
   },
+  scrollContainer1: {
+    backgroundColor:'silver',
+     paddingBottom: 20,
+     flex: 1,
+   },
   container: {
     flex: 1,
     padding: 20,
@@ -16,6 +22,7 @@ const styles = StyleSheet.create({
        flex: 1,
          justifyContent: 'center',
          alignItems: 'center',
+           backgroundColor:"silver"
   },
   inputContainer: {
     marginBottom: 20,
@@ -46,8 +53,16 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 19,
-    marginVertical: 10,
+    marginVertical: 9,
     fontWeight: 'bold',
+   
+  },
+  label1: {
+    fontSize: 22,
+    marginVertical: 10,
+    marginLeft: 160,
+    fontWeight: 'bold',
+     color:"black"
   },
   input: {
     borderWidth: 1,
@@ -80,8 +95,37 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   buttonContainer: {
-    marginTop: 10,
+     marginTop: 10,
+     flexDirection: 'row',
+     justifyContent: 'space-around',
+     width: '100%',
+      
   },
+  buttonContainer1: {
+    width: '100%',
+    alignItems: 'center',
+  },
+  button1: {
+    width:"70%",
+    padding: 12, 
+    alignItems: 'center',
+    marginVertical: 10,
+    borderRadius: 20, // Rounded corners (increase for more curvature)
+    elevation: 83, // Adds a shadow on Android
+    shadowColor: 'white', // Shadow color for iOS
+  },
+  greenButton: {
+    backgroundColor: 'green',
+    borderCurve:10, 
+     // Green color
+  },
+  buttonText1: {
+    color: 'white',
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+
+
   datePickerButton: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -98,13 +142,13 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   buttonText: {
-    color: 'black',
+    color: 'white',
     fontSize: 16,
     fontWeight: 'bold',
   },
   submitButton: {
     backgroundColor: 'green',
-    padding: 15,
+    padding: 10,
     borderRadius: 5,
     alignItems: 'center',
     marginBottom: 40,
@@ -114,13 +158,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+ 
   button: {
     width: '100%',
     padding: 15,
     borderRadius: 10,
     alignItems: 'center',
     borderRadius: 5,
-    backgroundColor: '#1e90ff',
+    backgroundColor: 'green',
 //     padding: 15,
     marginVertical: 5,
     marginBottom: 40,
@@ -129,11 +174,23 @@ const styles = StyleSheet.create({
   pasteButton: {
     marginLeft: 10,
     backgroundColor: '#007BFF',
-    paddingVertical: 10,
+    paddingVertical: 16,
+    paddingHorizontal: 15,
+    marginBottom: 10,
+    borderRadius: 23,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+    button2: {
+    marginLeft: 10,
+    backgroundColor: 'green',
+    paddingVertical: 1,
     paddingHorizontal: 15,
     borderRadius: 8,
     justifyContent: 'center',
     alignItems: 'center',
+    color: "white",
+    fontWeight: 'bold',
   },
   pasteButtonText: {
     color: '#fff',
@@ -145,6 +202,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
+  buttonDisabled: {
+      backgroundColor: 'gray',
+    },
 });
 
 

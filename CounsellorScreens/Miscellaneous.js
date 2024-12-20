@@ -105,7 +105,7 @@ const Miscellaneous = () => {
 
       {/* Upload Resume */}
       <Text style={styles.label}>Upload Your Resume</Text>
-      <TouchableOpacity style={styles.button} onPress={handleResumeUpload}>
+      <TouchableOpacity style={styles.pasteButton} onPress={handleResumeUpload}>
         <Text style={styles.buttonText}>
           {resume ? `Uploaded: ${resume.name}` : 'Upload Resume'}
         </Text>
@@ -113,7 +113,7 @@ const Miscellaneous = () => {
 
       {/* Profile Picture */}
       <Text style={styles.label}>Upload your Profile Picture</Text>
-      <TouchableOpacity style={styles.button} onPress={handleProfilePictureUpload}>
+      <TouchableOpacity style={styles.pasteButton} onPress={handleProfilePictureUpload}>
         <Text style={styles.buttonText}>
           {profilePicture
             ? `Uploaded: ${profilePicture.uri.split('/').pop()}`

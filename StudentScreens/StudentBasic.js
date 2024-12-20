@@ -174,10 +174,11 @@ export default function StudentBasic() {
           onChangeText={(text) => setFormData({ ...formData, address: text })}
         />
 
+      
         {/* Submit Button */}
-        <View style={styles.buttonContainer}>
-          <Button title="NEXT" onPress={handleSubmit} color="#4CAF50" />
-        </View>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+        <Text style={styles.submitButtonText}>NEXT</Text>
+      </TouchableOpacity>
       </View>
     </ScrollView>
   );

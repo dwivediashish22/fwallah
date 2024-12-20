@@ -8,13 +8,20 @@ import { View, Text, StyleSheet, Image } from 'react-native';
 import HomeScreen from './StudentScreens/HomeScreen';
 
 // Student Screens
+import Login from './StudentScreens/Login';
+import AfterLogin from './StudentScreens/AfterLogin'; 
+import QuickSetup from './StudentScreens/QuickSetup';
 import StudentBasic from './StudentScreens/StudentBasic';
 import Guardian from './StudentScreens/Guardian-Info';
 import Academic from './StudentScreens/Academic';
 import Career from './StudentScreens/Career';
 import Additional from './StudentScreens/Additional';
 
+
 // Counsellor Screens
+import Login1 from './CounsellorScreens/Login1';
+import AfterLogin1 from './CounsellorScreens/AfterLogin1';
+import QuickSetup1 from './CounsellorScreens/QuickSetup1';
 import Personal from './CounsellorScreens/Personal';
 import Professional from './CounsellorScreens/Professional';
 import WorkPre from './CounsellorScreens/WorkPre';
@@ -82,6 +89,9 @@ function StudentTabs() {
         scrollEnabled: true,
       }}
     >
+     <TopTab.Screen name="QuickSetup" component={QuickSetup} />
+      <TopTab.Screen name="Login Screen" component={Login} />
+      <TopTab.Screen name="After Login " component={AfterLogin} />
       <TopTab.Screen name="Student's Basic Info" component={StudentBasic} />
       <TopTab.Screen name="Guardian Info" component={Guardian} />
       <TopTab.Screen name="Academic Info" component={Academic} />
@@ -130,6 +140,9 @@ function CounsellorTabs() {
         },
       }}
     >
+    <TopTab.Screen name="QuickSetup " component={QuickSetup1} />
+      <TopTab.Screen name="Login Screen" component={Login1} />
+      <TopTab.Screen name="After Login " component={AfterLogin1} />
       <TopTab.Screen name="Personal Info" component={Personal} />
       <TopTab.Screen name="Professional Info" component={Professional} />
       <TopTab.Screen name="Work Preference" component={WorkPre} />

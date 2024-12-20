@@ -64,7 +64,7 @@ export default function Academic({ navigation }) {
         onChangeText={setExtraActivities}
       />
 
-      <Button title="NEXT" onPress={handleSubmit} color="#4CAF50" />
+      <Button title="NEXT" onPress={handleSubmit} color="green" />
     </View>
   );
 }
